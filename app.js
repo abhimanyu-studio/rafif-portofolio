@@ -145,13 +145,13 @@ const projectData = {
     tags: ['ESP32 S3 IoT', 'AI Scent Layering', 'Solenoid Micropump', 'SDG 9 & 12', 'Business Model Canvas', 'Chief Executive Officer']
   },
   fore: {
-    title: 'Fore Coffee Redesign',
-    tagline: 'High-Converting Mobile-First Web Experience',
+    title: 'Fore Coffee — Grind the Essentials',
+    tagline: 'Premium Sustainable Coffee Web Experience | Web Design & UI',
     category: 'Landing Page & UI',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCMGIMokKaC_tgxR07EpiTfvZzMFX2-Wl6lOSRdQbosqgxH8McXyuWXx6_PJhcCQlr9zkNyTL8QF5EZ1TIXERjviTGnQwqyOSg3FD9xvrRcr02YicOY5CaTe_73CWMW1FvHc-C0f1iahUjE8Vw-7lGBJssVnPCye87_OkW7os8dFx9BZGIHYHnUs9jvFbl3jZ18bqS3ihN_dmrRPmz3HA2BBhK9ONUMgCxmUsZKrDXPuT8vnM5Eux-N',
-    liveUrl: '#',
-    description: 'A concept redesign for Fore Coffee focusing on streamlining the online ordering funnel, showcasing artisanal coffee bean origin stories, and accelerating subscription renewals with optimized micro-interactions and smooth checkout UX.',
-    tags: ['E-Commerce UX', 'Tailwind CSS', 'Responsive Layout', 'Conversion Rate Optimization', 'Design System']
+    image: 'assets/fore_coffee_showcase.png',
+    liveUrl: 'https://cerulean-cascaron-bf6d94.netlify.app/',
+    description: 'Fore Coffee - Grind the Essentials adalah platform web digital untuk kopi premium yang diracik khusus menyempurnakan hari Anda. Menampilkan eksplorasi katalog menu berbasis visual estetik, inisiatif keberlanjutan (Earth & Brew Cold Brew), dan funnel konversi cepat untuk pemesanan online dan unduhan aplikasi mobile.',
+    tags: ['Landing Page UI', 'Coffee E-Commerce', 'Brand Experience', 'Responsive Design', 'Conversion Optimization', 'Web Design']
   },
   prisma: {
     title: 'Prisma Digital Hub',
