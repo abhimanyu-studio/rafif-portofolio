@@ -162,6 +162,23 @@ const projectData = {
     description: 'Arumé adalah platform wewangian modular cerdas berbasis IoT & AI pertama di iklim tropis. Mengintegrasikan botol pintar berbasis ESP32 S3 dengan 4 katrid aroma utama, mikro-pompa presisi, dan aplikasi mobile untuk layering aroma personal secara real-time. Muhammad Rafif Pratama berperan sebagai Chief Executive Officer (CEO) yang memimpin perancangan strategi bisnis komersial, arsitektur IoT, dan komitmen keberlanjutan (SDGs 9 & 12).',
     tags: ['ESP32 S3 IoT', 'AI Scent Layering', 'Solenoid Micropump', 'SDG 9 & 12', 'Business Model Canvas', 'Chief Executive Officer']
   },
+  snapspace: {
+    title: 'SnapSpace — Digital Photobooth Platform',
+    tagline: 'End-to-End Self-Service Photobooth & Cloud Gallery SaaS',
+    category: 'Digital Photobooth SaaS',
+    image: 'assets/snapspace_showcase.png',
+    liveUrl: 'https://delightful-rabanadas-4235e2.netlify.app/',
+    description: 'Platform SnapSpace adalah sistem software photobooth digital berbasis web/aplikasi terintegrasi yang dirancang untuk mengotomatisasi seluruh alur sesi foto secara mandiri (end-to-end self-service). Menghubungkan antarmuka interaktif layar sentuh iPad dengan penyimpanan cloud storage untuk pemrosesan grafis real-time dan distribusi berkas digital instan tanpa perantara manual.',
+    tags: [
+      '📸 Interactive Touchscreen UI',
+      '⏱️ Live Countdown & Preview',
+      '🖼️ Dynamic Template & Frame Engine',
+      '🎞️ Multi-Output (Photo Strip & GIF/Boomerang)',
+      '📲 Instant QR Code Generator',
+      '☁️ Cloud Storage Sync',
+      'Full-Stack Web App'
+    ]
+  },
   fore: {
     title: 'Fore Coffee — Grind the Essentials',
     tagline: 'Premium Sustainable Coffee Web Experience | Web Design & UI',
