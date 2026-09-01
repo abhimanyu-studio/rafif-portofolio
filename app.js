@@ -139,7 +139,7 @@ const projectData = {
     title: 'Arumé Perfume — Infinite Scents, One Vessel',
     tagline: 'Premium AI-IoT Modular Perfume System | CEO & Project Lead',
     category: 'AI & IoT Startup',
-    image: 'https://arume-perfume.vercel.app/assets/arume_smart_bottle.png',
+    image: 'assets/arume_perfume_showcase.png',
     liveUrl: 'https://arume-perfume.vercel.app',
     description: 'Arumé adalah platform wewangian modular cerdas berbasis IoT & AI pertama di iklim tropis. Mengintegrasikan botol pintar berbasis ESP32 S3 dengan 4 katrid aroma utama, mikro-pompa presisi, dan aplikasi mobile untuk layering aroma personal secara real-time. Muhammad Rafif Pratama berperan sebagai Chief Executive Officer (CEO) yang memimpin perancangan strategi bisnis komersial, arsitektur IoT, dan komitmen keberlanjutan (SDGs 9 & 12).',
     tags: ['ESP32 S3 IoT', 'AI Scent Layering', 'Solenoid Micropump', 'SDG 9 & 12', 'Business Model Canvas', 'Chief Executive Officer']
