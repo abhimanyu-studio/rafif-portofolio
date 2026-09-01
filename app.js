@@ -112,8 +112,8 @@ function initPortfolioFilter() {
 
       // Filter cards
       cards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (filterValue === 'all' || category === filterValue) {
+        const category = card.getAttribute('data-category') || '';
+        if (filterValue === 'all' || category.includes(filterValue)) {
           card.style.display = 'block';
           setTimeout(() => {
             card.style.opacity = '1';
@@ -135,6 +135,24 @@ function initPortfolioFilter() {
    4. Project Details Modal
    =================================================== */
 const projectData = {
+  artrade: {
+    title: 'ARTRADE — AI Trading Performance Analyzer',
+    tagline: 'AI-Powered Trading Analytics & Automated Journal Platform',
+    category: 'AI FinTech & SaaS',
+    image: 'assets/artrade_showcase.png',
+    liveUrl: 'https://artrade-gamma.vercel.app/',
+    description: 'ARTRADE adalah platform berbasis Artificial Intelligence (AI) yang membantu trader memahami dan mengevaluasi performa trading secara lebih cepat dan praktis. Pengguna cukup mengunggah screenshot riwayat atau hasil trading, kemudian ARTRADE menggunakan AI untuk membaca data, mengolah statistik, dan menghasilkan recap serta insight trading secara otomatis tanpa pencatatan manual.',
+    tags: [
+      '📸 AI Screenshot Analyzer',
+      '📊 Automatic Trading Recap',
+      '💰 Profit & Loss Calculator',
+      '🎯 Win Rate & Metrics',
+      '🧠 AI Trading Insights',
+      '📈 Visual Growth Curves',
+      '📅 Automated Journaling',
+      'Full-Stack Next.js / Vercel'
+    ]
+  },
   arume: {
     title: 'Arumé Perfume — Infinite Scents, One Vessel',
     tagline: 'Premium AI-IoT Modular Perfume System | CEO & Project Lead',
