@@ -141,7 +141,7 @@ const projectData = {
     category: 'AI FinTech & SaaS',
     image: 'assets/artrade_showcase.png',
     liveUrl: 'https://artrade-gamma.vercel.app/',
-    description: 'ARTRADE adalah platform berbasis Artificial Intelligence (AI) yang membantu trader memahami dan mengevaluasi performa trading secara lebih cepat dan praktis. Pengguna cukup mengunggah screenshot riwayat atau hasil trading, kemudian ARTRADE menggunakan AI untuk membaca data, mengolah statistik, dan menghasilkan recap serta insight trading secara otomatis tanpa pencatatan manual.',
+    description: 'ARTRADE is an AI-powered trading performance intelligence platform designed to streamline trading evaluations. Traders simply upload screenshots of their trading history or executed orders, and ARTRADE automatically extracts transaction metrics using Vision AI & OCR, calculates Profit & Loss (PNL), win rate percentages, and generates automated trading journals and actionable performance insights without manual data entry.',
     tags: [
       '📸 AI Screenshot Analyzer',
       '📊 Automatic Trading Recap',
@@ -159,8 +159,8 @@ const projectData = {
     category: 'AI & IoT Startup',
     image: 'assets/arume_perfume_showcase.png',
     liveUrl: 'https://arume-perfume.vercel.app',
-    description: 'Arumé adalah platform wewangian modular cerdas berbasis IoT & AI pertama di iklim tropis. Mengintegrasikan botol pintar berbasis ESP32 S3 dengan 4 katrid aroma utama, mikro-pompa presisi, dan aplikasi mobile untuk layering aroma personal secara real-time. Muhammad Rafif Pratama berperan sebagai Chief Executive Officer (CEO) yang memimpin perancangan strategi bisnis komersial, arsitektur IoT, dan komitmen keberlanjutan (SDGs 9 & 12).',
-    tags: ['ESP32 S3 IoT', 'AI Scent Layering', 'Solenoid Micropump', 'SDG 9 & 12', 'Business Model Canvas', 'Chief Executive Officer']
+    description: 'Arumé is a pioneering smart modular fragrance platform combining IoT hardware with AI scent customization tailored for tropical climates. Powered by an ESP32 S3 smart bottle with 4 modular scent cartridges, precision solenoid micropumps, and a mobile companion app for real-time, mood-based scent layering. Spearheaded by Muhammad Rafif Pratama as Chief Executive Officer (CEO), directing commercial product strategy, IoT system architecture, and circular refill sustainability (SDGs 9 & 12).',
+    tags: ['ESP32 S3 IoT', 'AI Scent Layering', 'Solenoid Micropump', 'SDG 9 & 12 (Sustainability)', 'Business Model Canvas', 'Chief Executive Officer']
   },
   snapspace: {
     title: 'SnapSpace — Digital Photobooth Platform',
@@ -168,12 +168,12 @@ const projectData = {
     category: 'Digital Photobooth SaaS',
     image: 'assets/snapspace_showcase.png',
     liveUrl: 'https://delightful-rabanadas-4235e2.netlify.app/',
-    description: 'Platform SnapSpace adalah sistem software photobooth digital berbasis web/aplikasi terintegrasi yang dirancang untuk mengotomatisasi seluruh alur sesi foto secara mandiri (end-to-end self-service). Menghubungkan antarmuka interaktif layar sentuh iPad dengan penyimpanan cloud storage untuk pemrosesan grafis real-time dan distribusi berkas digital instan tanpa perantara manual.',
+    description: 'SnapSpace is an integrated digital photobooth software platform engineered to automate the entire photo session workflow with end-to-end self-service. Connecting an intuitive iPad touchscreen interface with cloud storage infrastructure, SnapSpace delivers real-time graphic processing, dynamic frame customization, multi-output photo strip & GIF rendering, and instant photo delivery via automated QR code generation.',
     tags: [
       '📸 Interactive Touchscreen UI',
       '⏱️ Live Countdown & Preview',
       '🖼️ Dynamic Template & Frame Engine',
-      '🎞️ Multi-Output (Photo Strip & GIF/Boomerang)',
+      '🎞️ Multi-Output (Photo Strip & GIF)',
       '📲 Instant QR Code Generator',
       '☁️ Cloud Storage Sync',
       'Full-Stack Web App'
@@ -185,7 +185,7 @@ const projectData = {
     category: 'Landing Page & UI',
     image: 'assets/fore_coffee_showcase.png',
     liveUrl: 'https://cerulean-cascaron-bf6d94.netlify.app/',
-    description: 'Fore Coffee - Grind the Essentials adalah platform web digital untuk kopi premium yang diracik khusus menyempurnakan hari Anda. Menampilkan eksplorasi katalog menu berbasis visual estetik, inisiatif keberlanjutan (Earth & Brew Cold Brew), dan funnel konversi cepat untuk pemesanan online dan unduhan aplikasi mobile.',
+    description: 'Fore Coffee - Grind the Essentials is a modern digital web experience designed for premium grab-and-go artisanal coffee. Features high-converting interactive menu exploration, sustainability impact initiatives (Earth & Brew Cold Brew), and frictionless conversion funnels for online ordering and mobile app downloads.',
     tags: ['Landing Page UI', 'Coffee E-Commerce', 'Brand Experience', 'Responsive Design', 'Conversion Optimization', 'Web Design']
   },
   prisma: {
