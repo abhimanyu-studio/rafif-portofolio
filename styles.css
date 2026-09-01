@@ -1,0 +1,108 @@
+/* ===================================================
+   Custom Styling & Enhancements for Rafif Portfolio
+   =================================================== */
+
+:root {
+  --primary: #f04e23;
+  --primary-hover: #d63c10;
+  --surface: #ffffff;
+  --surface-container: #f9f9f9;
+  --inverse-surface: #1a1a1a;
+  --font-heading: 'Manrope', sans-serif;
+  --font-body: 'Work Sans', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f04e23;
+}
+
+/* Clip Paths */
+.clip-circle {
+  clip-path: circle(50% at 50% 50%);
+}
+
+.clip-bottom {
+  clip-path: inset(0 0 10% 0);
+}
+
+/* Scroll Reveal Effects */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+
+/* Filter Buttons active state */
+.filter-btn.active {
+  background-color: #f04e23 !important;
+  color: #ffffff !important;
+  border-color: #f04e23 !important;
+  box-shadow: 0 4px 12px rgba(240, 78, 35, 0.25);
+}
+
+/* Service Card Hover */
+.service-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Portfolio Card Hover */
+.portfolio-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modal Open state */
+.modal-open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.modal-open #project-modal-box,
+.modal-open #service-modal-box,
+.modal-open #booking-modal-box {
+  transform: scale(1) !important;
+}
+
+/* Mobile Drawer Active State */
+.drawer-open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.drawer-open #mobile-drawer-content {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .hero-headline {
+    font-size: 2.25rem;
+    line-height: 1.15;
+  }
+}

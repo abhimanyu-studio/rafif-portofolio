@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport"/>
+  <title>Muhammad Rafif Pratama — Portfolio & Digital Business</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Muhammad Rafif Pratama — Portfolio" />
+  <meta name="description" content="Digital Business Student & Tech Innovator. Explore web design, UI/UX, AI & IoT ventures, and work experiences." />
+  
+  <!-- Tailwind CSS with plugins -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Google Fonts: Manrope & Work Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#f04e23",
+            "primary-hover": "#d63c10",
+            "primary-light": "#ffefe9",
+            "on-primary": "#ffffff",
+            "surface": "#ffffff",
+            "on-surface": "#1a1a1a",
+            "surface-container": "#f9f9f9",
+            "surface-container-high": "#f0f0f0",
+            "inverse-surface": "#1a1a1a",
+            "inverse-on-surface": "#ffffff",
+            "outline": "#e5e5e5",
+            "surface-variant": "#737373",
+          },
+          fontFamily: {
+            "sans": ["Manrope", "sans-serif"],
+            "body": ["Work Sans", "sans-serif"],
+          },
+          spacing: {
+            "gutter": "24px",
+            "container-max": "1200px",
+            "section": "90px",
+            "section-mobile": "54px",
+          },
+          borderRadius: {
+            "3xl": "1.75rem",
+            "4xl": "2.25rem",
+            "5xl": "3rem",
+          },
+          animation: {
+            "fade-in-up": "fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+            "float": "float 5s ease-in-out infinite",
+            "marquee": "marquee 22s linear infinite",
+          },
+          keyframes: {
+            fadeInUp: {
+              "0%": { opacity: "0", transform: "translateY(24px)" },
+              "100%": { opacity: "1", transform: "translateY(0)" },
+            },
+            float: {
+              "0%, 100%": { transform: "translateY(0)" },
+              "50%": { transform: "translateY(-8px)" },
+            },
+            marquee: {
+              "0%": { transform: "translateX(0%)" },
+              "100%": { transform: "translateX(-50%)" },
+            }
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-surface-container text-on-surface font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-white">
+
+  <!-- ================= TOP NAVIGATION ================= -->
+  <header class="fixed top-4 sm:top-6 left-0 right-0 z-50 px-4 flex justify-center pointer-events-none">
+    <nav class="pointer-events-auto w-full max-w-5xl rounded-full bg-inverse-surface/90 backdrop-blur-md text-inverse-on-surface flex justify-between items-center px-4 sm:px-6 py-2.5 sm:py-3 shadow-2xl border border-white/10 opacity-0 animate-fade-in-up transition-all duration-300">
+      
+      <!-- Desktop Left Links -->
+      <div class="hidden md:flex gap-6 items-center text-sm font-medium">
+        <a class="nav-item hover:text-primary transition-all duration-200" href="#home">Home</a>
+        <a class="nav-item hover:text-primary transition-all duration-200" href="#services">Services</a>
+        <a class="nav-item hover:text-primary transition-all duration-200" href="#experience">Experience</a>
+      </div>
+
+      <!-- Center Brand Logo -->
+      <a href="#home" class="flex items-center gap-2.5 group cursor-pointer py-0.5">
+        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary text-white flex items-center justify-center font-extrabold text-sm sm:text-base group-hover:rotate-12 group-hover:scale-105 transition-transform duration-300 shadow-md">
+          R
+        </div>
+        <span class="font-bold text-base sm:text-lg tracking-tight group-hover:text-primary transition-colors duration-300">
+          Muhammad Rafif Pratama
+        </span>
+      </a>
+
+      <!-- Desktop Right Links -->
+      <div class="hidden md:flex gap-6 items-center text-sm font-medium">
+        <a class="nav-item hover:text-primary transition-all duration-200" href="#projects">Projects</a>
+        <a class="nav-item hover:text-primary transition-all duration-200" href="#testimonials">Testimonials</a>
+        <a class="bg-primary text-white px-4 py-1.5 rounded-full text-xs font-bold hover:bg-primary-hover hover:scale-105 transition-all duration-200 shadow-md" href="#contact">Contact</a>
+      </div>
+
+      <!-- Mobile Hamburger Menu Button -->
+      <div class="flex items-center gap-2 md:hidden">
+        <a href="#contact" class="bg-primary text-white px-3 py-1 rounded-full text-xs font-bold hover:bg-primary-hover transition-colors">
+          Hire Me
+        </a>
+        <button id="mobile-menu-toggle" aria-label="Toggle navigation menu" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-all focus:outline-none">
+          <span class="material-symbols-outlined text-[22px]" id="menu-icon">menu</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ================= MOBILE NAVIGATION DRAWER ================= -->
+  <div id="mobile-drawer" class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
+    <div id="mobile-drawer-content" class="absolute top-20 left-4 right-4 bg-inverse-surface border border-white/10 text-white rounded-3xl p-6 shadow-2xl transform -translate-y-6 opacity-0 transition-all duration-300">
+      <div class="flex flex-col gap-4 text-center text-base font-semibold">
+        <a class="mobile-nav-link py-2.5 rounded-xl hover:bg-white/10 hover:text-primary transition-colors" href="#home">Home</a>
+        <a class="mobile-nav-link py-2.5 rounded-xl hover:bg-white/10 hover:text-primary transition-colors" href="#services">My Services</a>
+        <a class="mobile-nav-link py-2.5 rounded-xl hover:bg-white/10 hover:text-primary transition-colors" href="#experience">Work Experience</a>
+        <a class="mobile-nav-link py-2.5 rounded-xl hover:bg-white/10 hover:text-primary transition-colors" href="#projects">Portfolio Projects</a>
+        <a class="mobile-nav-link py-2.5 rounded-xl hover:bg-white/10 hover:text-primary transition-colors" href="#testimonials">Testimonials</a>
+        <a class="mobile-nav-link py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-hover transition-colors mt-2" href="#contact">Let's Discuss Project →</a>
+      </div>
+      <div class="mt-6 pt-4 border-t border-white/10 flex justify-center gap-6 text-sm text-gray-400">
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-primary">LinkedIn</a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-primary">GitHub</a>
+        <a href="mailto:rafifpratama@gmail.com" class="hover:text-primary">Email</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="pt-32 sm:pt-40 pb-16 md:pb-section px-4 sm:px-gutter max-w-container mx-auto text-center relative overflow-hidden bg-surface rounded-b-[2.5rem] sm:rounded-b-[4rem] shadow-sm" id="home">
+    
+    <!-- Greeting Pill -->
+    <div class="inline-flex items-center gap-2 border border-outline bg-surface-container/60 rounded-full px-4 py-1.5 mb-6 sm:mb-8 opacity-0 animate-fade-in-up delay-100 hover:border-primary hover:text-primary hover:shadow-md transition-all duration-300 cursor-default">
+      <span class="text-xs sm:text-sm font-semibold tracking-wide">Hello!</span>
+      <span class="material-symbols-outlined text-[16px] sm:text-[18px] text-primary animate-bounce">waving_hand</span>
+    </div>
+
+    <!-- Main Hero Headline -->
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-[1.12] tracking-tight mb-8 sm:mb-12 opacity-0 animate-fade-in-up delay-200">
+      I'm <span class="text-primary hover:text-primary-hover transition-colors cursor-default">Rafif,</span><br/>
+      <span class="text-on-surface">Digital Business Student</span>
+    </h1>
+
+    <!-- Hero Content & Stats Grid -->
+    <div class="relative max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between mt-4 sm:mt-12 md:mt-20 gap-8 md:gap-0">
+      
+      <!-- Left Stats (Desktop) -->
+      <div class="text-left hidden md:block w-48 relative z-10 opacity-0 animate-fade-in-up delay-300 hover:-translate-y-1 transition-transform duration-300 bg-white/80 p-3 rounded-2xl border border-transparent hover:border-outline">
+        <span class="text-4xl text-primary/30 absolute -top-5 -left-2 font-serif font-bold">“</span>
+        <p class="text-xs text-surface-variant mb-4 font-medium leading-relaxed font-body">
+          Digital Business undergraduate with strong passion in digital innovation & product design.
+        </p>
+        <div class="flex items-baseline gap-2">
+          <span class="text-3xl font-extrabold text-primary">3.70</span>
+          <span class="text-[10px] font-bold text-surface-variant uppercase tracking-wider">/ 4.00</span>
+        </div>
+        <p class="text-xs text-surface-variant font-semibold">Current GPA</p>
+      </div>
+
+      <!-- Center Interactive Image -->
+      <div class="relative flex-1 flex justify-center opacity-0 animate-fade-in-up delay-300 w-full">
+        <div class="relative w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] md:w-[380px] md:h-[380px] animate-float">
+          
+          <!-- Orange Background Circle with Glow -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-primary to-orange-500 rounded-full transform translate-y-6 sm:translate-y-8 shadow-[0_15px_40px_rgba(240,78,35,0.3)] transition-transform duration-500 hover:scale-105"></div>
+          
+          <!-- Profile Photo -->
+          <img 
+            alt="Muhammad Rafif Pratama" 
+            class="absolute inset-0 w-full h-full object-cover clip-circle transform scale-[1.12] -translate-y-6 sm:-translate-y-8 transition-transform duration-500 hover:scale-115 pointer-events-none select-none" 
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAouBXX87ZN75vLOrVpe6rht5eXa77RR9nGg-LpytVgrwVawvXbqXaz2A5sUGnUJvu5kHs0uF77qym4QwBRryOp5mgavd8MY246bnK4kxGiRgjyUmPplJuVHXMgY98nYZbecUdc-HhMoaPTQe7hP0pq3NbE_IZdgkoULfMQShA1a6Owj33pFKuiVPYHEh-fmdq9ig5Fxw9YSP7-6FanMQ1qjPctnT4SDCt_FN6Q2ai5yY-bSMCKEthW5Ezx68HhfgiF-vPQgFXsifxhCQ"
+            loading="eager"
+          />
+
+          <!-- Action Floating Pill Buttons -->
+          <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 flex items-center bg-surface/95 backdrop-blur-md rounded-full shadow-xl border border-outline/80 p-1.5 z-20 whitespace-nowrap hover:shadow-2xl transition-all duration-300">
+            <a class="bg-primary text-white px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1.5 hover:bg-primary-hover hover:scale-105 hover:shadow-[0_0_20px_rgba(240,78,35,0.4)] transition-all duration-200" href="#projects">
+              Portfolio <span class="material-symbols-outlined text-[15px]">arrow_outward</span>
+            </a>
+            <a class="px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold text-on-surface hover:text-primary hover:bg-surface-container transition-all duration-200" href="#contact">
+              Hire Me
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Stats (Desktop) -->
+      <div class="text-right hidden md:block w-48 relative z-10 opacity-0 animate-fade-in-up delay-400 hover:-translate-y-1 transition-transform duration-300 bg-white/80 p-3 rounded-2xl border border-transparent hover:border-outline">
+        <div class="flex justify-end text-primary mb-2 gap-0.5">
+          <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+          <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+          <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+          <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+          <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+        </div>
+        <div class="mb-1">
+          <span class="text-3xl font-extrabold text-primary">2+ Years</span>
+        </div>
+        <p class="text-xs text-surface-variant font-semibold uppercase tracking-wider">Experience</p>
+        <p class="text-[11px] text-surface-variant/80 font-body mt-1">Tech & Leadership</p>
+      </div>
+    </div>
+
+    <!-- Mobile-Only Responsive Stats Row -->
+    <div class="grid grid-cols-2 gap-3 mt-12 md:hidden pt-4 max-w-sm mx-auto">
+      <div class="bg-surface-container/90 border border-outline rounded-2xl p-3.5 text-center shadow-sm">
+        <div class="text-2xl font-extrabold text-primary">3.70</div>
+        <div class="text-xs font-semibold text-on-surface mt-0.5">Current GPA</div>
+        <div class="text-[10px] text-surface-variant font-medium">Digital Business UMS</div>
+      </div>
+      <div class="bg-surface-container/90 border border-outline rounded-2xl p-3.5 text-center shadow-sm">
+        <div class="flex justify-center text-primary mb-1">
+          <span class="material-symbols-outlined text-[16px]" style='font-variation-settings: "FILL" 1;'>star</span>
+          <span class="material-symbols-outlined text-[16px]" style='font-variation-settings: "FILL" 1;'>star</span>
+          <span class="material-symbols-outlined text-[16px]" style='font-variation-settings: "FILL" 1;'>star</span>
+          <span class="material-symbols-outlined text-[16px]" style='font-variation-settings: "FILL" 1;'>star</span>
+          <span class="material-symbols-outlined text-[16px]" style='font-variation-settings: "FILL" 1;'>star</span>
+        </div>
+        <div class="text-lg font-extrabold text-primary">2+ Years</div>
+        <div class="text-xs font-semibold text-on-surface">Experience</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================= SERVICES SECTION ================= -->
+  <section class="py-16 md:py-section bg-inverse-surface rounded-[2.5rem] sm:rounded-[3rem] -mt-6 sm:-mt-10 relative z-10 px-4 sm:px-gutter reveal" id="services">
+    <div class="max-w-container mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-4 border-b border-white/10 pb-6">
+        <div>
+          <span class="text-primary font-bold text-xs uppercase tracking-widest block mb-1">What I Offer</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">My Services</h2>
+        </div>
+        <p class="text-gray-400 text-xs sm:text-sm max-w-sm md:text-right font-body leading-relaxed">
+          Passionate about creating impactful digital solutions and continuously developing high-converting digital products.
+        </p>
+      </div>
+
+      <!-- Services Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Service 1: UI/UX Design -->
+        <div class="service-card bg-[#252525] hover:bg-[#2c2c2c] border border-white/5 hover:border-primary/40 rounded-3xl p-6 relative overflow-hidden group hover:scale-[1.02] hover:shadow-[0_10px_30px_rgba(0,0,0,0.3)] transition-all duration-300 ease-out cursor-pointer flex flex-col justify-between" data-service="uiux">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full">Design</span>
+              <span class="text-xs text-gray-500 font-medium">01</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">UI/UX Design</h3>
+            <p class="text-xs text-gray-400 font-body mb-6">User research, wireframing, interactive prototyping, and design systems in Figma.</p>
+          </div>
+
+          <div class="relative pt-6 flex justify-center">
+            <div class="bg-gray-800/80 border border-white/10 w-[85%] h-36 rounded-t-2xl transform translate-y-4 group-hover:translate-y-1 transition-transform duration-300 p-3 flex flex-col gap-2">
+              <div class="h-2 w-1/3 bg-primary/60 rounded-full"></div>
+              <div class="h-2 w-2/3 bg-white/20 rounded-full"></div>
+              <div class="grid grid-cols-2 gap-2 mt-2">
+                <div class="h-14 bg-white/10 rounded-lg"></div>
+                <div class="h-14 bg-white/10 rounded-lg"></div>
+              </div>
+            </div>
+            <button aria-label="Open UI/UX details" class="absolute bottom-2 right-2 w-11 h-11 bg-[#383838] group-hover:bg-primary rounded-full flex items-center justify-center text-white group-hover:scale-110 shadow-lg transition-all duration-300">
+              <span class="material-symbols-outlined text-[20px] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform">arrow_outward</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Service 2: Web Design (Highlighted) -->
+        <div class="service-card bg-primary hover:bg-[#d63c10] rounded-3xl p-6 relative overflow-hidden group hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(240,78,35,0.45)] transition-all duration-300 ease-out cursor-pointer flex flex-col justify-between" data-service="web">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-primary bg-white px-3 py-1 rounded-full shadow-sm">Popular</span>
+              <span class="text-xs text-white/80 font-medium">02</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Web Design & Dev</h3>
+            <p class="text-xs text-white/90 font-body mb-6">Responsive, high-performance websites built with clean code and modern aesthetics.</p>
+          </div>
+
+          <div class="relative pt-6 flex justify-center">
+            <div class="bg-white/20 w-[90%] h-4 absolute top-4 rounded-t-xl group-hover:w-[94%] transition-all duration-300"></div>
+            <div class="bg-white w-full h-36 rounded-t-2xl transform translate-y-2 shadow-2xl z-10 group-hover:translate-y-0 transition-transform duration-300 p-3 flex flex-col gap-2">
+              <div class="flex items-center gap-1.5 pb-2 border-b border-gray-100">
+                <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+                <span class="w-2 h-2 rounded-full bg-green-400"></span>
+              </div>
+              <div class="h-2 w-1/2 bg-primary/70 rounded-full"></div>
+              <div class="h-2 w-3/4 bg-gray-200 rounded-full"></div>
+            </div>
+            <button aria-label="Open Web Design details" class="absolute bottom-2 right-2 w-11 h-11 bg-[#1a1a1a] text-white rounded-full flex items-center justify-center z-20 shadow-xl group-hover:bg-white group-hover:text-primary group-hover:scale-110 transition-all duration-300">
+              <span class="material-symbols-outlined text-[20px] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform">arrow_outward</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Service 3: Landing Page -->
+        <div class="service-card bg-[#252525] hover:bg-[#2c2c2c] border border-white/5 hover:border-primary/40 rounded-3xl p-6 relative overflow-hidden group hover:scale-[1.02] hover:shadow-[0_10px_30px_rgba(0,0,0,0.3)] transition-all duration-300 ease-out cursor-pointer flex flex-col justify-between" data-service="landing">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full">Conversion</span>
+              <span class="text-xs text-gray-500 font-medium">03</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Landing Page Optimization</h3>
+            <p class="text-xs text-gray-400 font-body mb-6">High-converting landing pages tailored for startups, campaigns, and digital product launches.</p>
+          </div>
+
+          <div class="relative pt-6 flex justify-center">
+            <div class="bg-gray-800/80 border border-white/10 w-[85%] h-36 rounded-t-2xl transform translate-y-4 group-hover:translate-y-1 transition-transform duration-300 p-3 flex flex-col gap-2">
+              <div class="h-2 w-1/3 bg-orange-400 rounded-full"></div>
+              <div class="h-10 bg-white/10 rounded-lg flex items-center justify-center text-[10px] text-gray-400">CTA Section</div>
+            </div>
+            <button aria-label="Open Landing Page details" class="absolute bottom-2 right-2 w-11 h-11 bg-[#383838] group-hover:bg-primary rounded-full flex items-center justify-center text-white group-hover:scale-110 shadow-lg transition-all duration-300">
+              <span class="material-symbols-outlined text-[20px] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform">arrow_outward</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WORK EXPERIENCE ================= -->
+  <section class="py-16 md:py-section px-4 sm:px-gutter bg-surface reveal" id="experience">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12 sm:mb-16">
+        <span class="text-primary font-bold text-xs uppercase tracking-widest block mb-1">Career Journey</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold">My Work Experience</h2>
+      </div>
+
+      <!-- Experience Timeline Container -->
+      <div class="relative space-y-10 sm:space-y-12 before:absolute before:inset-0 before:left-3 md:before:left-1/3 before:w-0.5 before:bg-gradient-to-b before:from-primary before:via-gray-300 before:to-transparent">
+        
+        <!-- Experience Item 1 -->
+        <div class="experience-card relative flex flex-col md:flex-row gap-4 md:gap-12 pl-8 md:pl-0 group transition-all duration-300">
+          <!-- Timeline Node Circle -->
+          <div class="absolute left-1.5 md:left-1/3 -translate-x-1/2 top-1.5 w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20 shadow-md group-hover:scale-125 transition-transform duration-300"></div>
+          
+          <!-- Left Column (Organization & Year) -->
+          <div class="md:w-1/3 md:text-right">
+            <h3 class="text-lg sm:text-xl font-bold text-on-surface group-hover:text-primary transition-colors">UKM Prisma</h3>
+            <p class="text-xs sm:text-sm text-surface-variant font-medium">Universitas Muhammadiyah Surakarta</p>
+            <span class="inline-block mt-1.5 text-xs font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full">2026 — Present</span>
+          </div>
+
+          <!-- Right Column (Role & Details) -->
+          <div class="md:w-2/3 bg-surface-container/50 border border-outline/70 hover:border-primary/40 rounded-2xl p-5 shadow-sm group-hover:shadow-md transition-all">
+            <h4 class="text-base sm:text-lg font-bold text-on-surface mb-2 flex items-center gap-2">
+              Vice Chairman
+              <span class="text-[11px] font-semibold bg-gray-200 text-on-surface px-2 py-0.5 rounded-full">Leadership</span>
+            </h4>
+            <p class="text-xs sm:text-sm text-surface-variant leading-relaxed font-body mb-3">
+              Assist the Chairman in managing organizational operations and strategic planning. Coordinate communication and collaboration across organizational divisions and supervise the implementation of high-impact technology & research programs.
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[11px] bg-white border border-outline px-2.5 py-0.5 rounded-md font-medium text-surface-variant">Strategic Planning</span>
+              <span class="text-[11px] bg-white border border-outline px-2.5 py-0.5 rounded-md font-medium text-surface-variant">Team Coordination</span>
+              <span class="text-[11px] bg-white border border-outline px-2.5 py-0.5 rounded-md font-medium text-surface-variant">Program Supervision</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience Item 2 -->
+        <div class="experience-card relative flex flex-col md:flex-row gap-4 md:gap-12 pl-8 md:pl-0 group transition-all duration-300">
+          <div class="absolute left-1.5 md:left-1/3 -translate-x-1/2 top-1.5 w-4 h-4 rounded-full bg-[#333] group-hover:bg-primary ring-4 ring-gray-200 group-hover:ring-primary/20 shadow-md group-hover:scale-125 transition-all duration-300"></div>
+          
+          <div class="md:w-1/3 md:text-right">
+            <h3 class="text-lg sm:text-xl font-bold text-on-surface group-hover:text-primary transition-colors">HackQuest Indonesia</h3>
+            <p class="text-xs sm:text-sm text-surface-variant font-medium">Web 3 Innovation Ecosystem</p>
+            <span class="inline-block mt-1.5 text-xs font-bold text-surface-variant bg-gray-100 px-2.5 py-0.5 rounded-full">2026</span>
+          </div>
+
+          <div class="md:w-2/3 bg-surface-container/50 border border-outline/70 hover:border-primary/40 rounded-2xl p-5 shadow-sm group-hover:shadow-md transition-all">
+            <h4 class="text-base sm:text-lg font-bold text-on-surface mb-2 flex items-center gap-2">
+              Advocate Team
+              <span class="text-[11px] font-semibold bg-gray-200 text-on-surface px-2 py-0.5 rounded-full">Web 3 & Community</span>
+            </h4>
+            <p class="text-xs sm:text-sm text-surface-variant leading-relaxed font-body mb-3">
+              Supported the rollout of Web 3 innovation hackathons and technology competition programs. Assisted participant onboarding, coordinated operational events, and spearheaded promotional campaigns.
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[11px] bg-white border border-outline px-2.5 py-0.5 rounded-md font-medium text-surface-variant">Web 3 Hackathons</span>
+              <span class="text-[11px] bg-white border border-outline px-2.5 py-0.5 rounded-md font-medium text-surface-variant">Community Outreach</span>
+              <span class="text-[11px] bg-white border border-outline px-2.5 py-0.5 rounded-md font-medium text-surface-variant">Event Operations</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience Item 3 -->
+        <div class="experience-card relative flex flex-col md:flex-row gap-4 md:gap-12 pl-8 md:pl-0 group transition-all duration-300">
+          <div class="absolute left-1.5 md:left-1/3 -translate-x-1/2 top-1.5 w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20 shadow-md group-hover:scale-125 transition-transform duration-300"></div>
+          
+          <div class="md:w-1/3 md:text-right">
+            <h3 class="text-lg sm:text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Youth.ID ASEAN</h3>
+            <p class="text-xs sm:text-sm text-surface-variant font-medium">International Chapter</p>
+            <span class="inline-block mt-1.5 text-xs font-bold text-surface-variant bg-gray-100 px-2.5 py-0.5 rounded-full">2025</span>
+          </div>
+
+          <div class="md:w-2/3 bg-surface-container/50 border border-outline/70 hover:border-primary/40 rounded-2xl p-5 shadow-sm group-hover:shadow-md transition-all">
+            <h4 class="text-base sm:text-lg font-bold text-on-surface mb-2 flex items-center gap-2">
+              International Volunteer
+              <span class="text-[11px] font-semibold bg-gray-200 text-on-surface px-2 py-0.5 rounded-full">Cross-Border</span>
+            </h4>
+            <p class="text-xs sm:text-sm text-surface-variant leading-relaxed font-body mb-3">
+              Designed and delivered engaging digital literacy and educational programs for Indonesian students in Kuala Lumpur, Malaysia. Collaborated with international youth delegates in cultural exchange.
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[11px] bg-white border border-outline px-2.5 py-0.5 rounded-md font-medium text-surface-variant">Digital Literacy</span>
+              <span class="text-[11px] bg-white border border-outline px-2.5 py-0.5 rounded-md font-medium text-surface-variant">Global Collaboration</span>
+              <span class="text-[11px] bg-white border border-outline px-2.5 py-0.5 rounded-md font-medium text-surface-variant">Volunteer Management</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PORTFOLIO PROJECTS ================= -->
+  <section class="py-16 md:py-section px-4 sm:px-gutter bg-surface-container rounded-t-[2.5rem] sm:rounded-t-[3rem] reveal" id="projects">
+    <div class="max-w-container mx-auto">
+      
+      <!-- Header Row with Filter Tabs -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
+        <div>
+          <span class="text-primary font-bold text-xs uppercase tracking-widest block mb-1">Featured Case Studies</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold">Let's Have a Look at<br class="hidden sm:inline"/> my Portfolio</h2>
+        </div>
+        
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap items-center gap-2" id="portfolio-filters">
+          <button class="filter-btn active px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-primary text-white shadow-sm" data-filter="all">All</button>
+          <button class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-surface-variant hover:text-on-surface hover:bg-gray-100 border border-outline" data-filter="startup">Startup & AI</button>
+          <button class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-surface-variant hover:text-on-surface hover:bg-gray-100 border border-outline" data-filter="landing">Landing Page</button>
+          <button class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-surface-variant hover:text-on-surface hover:bg-gray-100 border border-outline" data-filter="platform">Platform</button>
+        </div>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-16" id="portfolio-grid">
+        
+        <!-- Card 1: Arume Perfume -->
+        <div class="portfolio-card bg-surface rounded-3xl p-4 sm:p-5 shadow-sm border border-outline group hover:scale-[1.015] hover:shadow-xl hover:border-primary/40 transition-all duration-300 ease-out cursor-pointer" data-category="startup" data-project="arume">
+          <div class="aspect-[16/10] bg-gray-100 rounded-2xl overflow-hidden mb-4 relative">
+            <img 
+              alt="Arume Perfume Smart Dashboard" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt2k6Y4ZDe4Xo2cb07mfk_LmrfkV132v6jWqHljCKEn6rFmph91BxTtSa91tWk2HpFMYUxqoQk2bVEU03Iq9Fn9agBUGLIR2U1Bs-5nRUKNoZGSjlSuaiY-mJ26w-J5KlyFZHvXcZALPG7UsmdDbF9iOPI0pGL4QXMd72ebptwcpaYUlwQYku3k5XFTTPim39dBT-9jPYhUbQIttn77O3oryr0Zs94nI_uQ502u4mWRovq4Zc2bT0I"
+              loading="lazy"
+            />
+            <div class="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+              <span class="bg-white/95 backdrop-blur-md text-xs font-bold px-3 py-1 rounded-full text-on-surface shadow-sm group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                AI & IoT Startup
+              </span>
+              <button aria-label="View Arume details" class="w-10 h-10 bg-inverse-surface text-white rounded-full flex items-center justify-center shadow-lg group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+              </button>
+            </div>
+          </div>
+          <div class="px-2 pb-2">
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-extrabold text-lg sm:text-xl group-hover:text-primary transition-colors flex items-center gap-2">
+                Arume Perfume 
+                <span class="w-2 h-2 rounded-full bg-primary group-hover:animate-ping"></span>
+              </h3>
+              <span class="text-xs text-surface-variant font-medium">2026</span>
+            </div>
+            <p class="text-xs sm:text-sm text-surface-variant font-body leading-relaxed">
+              Led the development and business model canvas of an AI & IoT-based smart personalized fragrance system.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: Fore Coffee Landing Page -->
+        <div class="portfolio-card bg-surface rounded-3xl p-4 sm:p-5 shadow-sm border border-outline group hover:scale-[1.015] hover:shadow-xl hover:border-primary/40 transition-all duration-300 ease-out cursor-pointer" data-category="landing" data-project="fore">
+          <div class="aspect-[16/10] bg-gray-100 rounded-2xl overflow-hidden mb-4 relative">
+            <img 
+              alt="Fore Coffee Modern Web Experience" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMGIMokKaC_tgxR07EpiTfvZzMFX2-Wl6lOSRdQbosqgxH8McXyuWXx6_PJhcCQlr9zkNyTL8QF5EZ1TIXERjviTGnQwqyOSg3FD9xvrRcr02YicOY5CaTe_73CWMW1FvHc-C0f1iahUjE8Vw-7lGBJssVnPCye87_OkW7os8dFx9BZGIHYHnUs9jvFbl3jZ18bqS3ihN_dmrRPmz3HA2BBhK9ONUMgCxmUsZKrDXPuT8vnM5Eux-N"
+              loading="lazy"
+            />
+            <div class="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+              <span class="bg-white/95 backdrop-blur-md text-xs font-bold px-3 py-1 rounded-full text-on-surface shadow-sm group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                Landing Page & UI
+              </span>
+              <button aria-label="View Fore Coffee details" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-primary-hover transition-all duration-300">
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+          <div class="px-2 pb-2">
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-extrabold text-lg sm:text-xl group-hover:text-primary transition-colors flex items-center gap-2">
+                Fore Coffee Redesign
+                <span class="w-2 h-2 rounded-full bg-primary group-hover:animate-ping"></span>
+              </h3>
+              <span class="text-xs text-surface-variant font-medium">2026</span>
+            </div>
+            <p class="text-xs sm:text-sm text-surface-variant font-body leading-relaxed">
+              Designed modern coffee ecommerce structure, micro-interactions, and conversion-focused customer flow.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3: Prisma Student Hub (Platform) -->
+        <div class="portfolio-card bg-surface rounded-3xl p-4 sm:p-5 shadow-sm border border-outline group hover:scale-[1.015] hover:shadow-xl hover:border-primary/40 transition-all duration-300 ease-out cursor-pointer" data-category="platform" data-project="prisma">
+          <div class="aspect-[16/10] bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden mb-4 relative p-6 flex flex-col justify-between">
+            <div class="flex justify-between items-start">
+              <span class="bg-white/10 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">
+                Organization Platform
+              </span>
+              <span class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs">P</span>
+            </div>
+            <div class="space-y-2">
+              <div class="h-3 w-1/2 bg-white/20 rounded-full"></div>
+              <div class="h-3 w-3/4 bg-white/10 rounded-full"></div>
+              <div class="grid grid-cols-3 gap-2 pt-2">
+                <div class="h-10 bg-primary/30 rounded-lg"></div>
+                <div class="h-10 bg-white/10 rounded-lg"></div>
+                <div class="h-10 bg-white/10 rounded-lg"></div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center pt-2">
+              <span class="text-xs text-gray-300 font-medium">Integrated Management</span>
+              <button aria-label="View Prisma Platform details" class="w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all">
+                <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+              </button>
+            </div>
+          </div>
+          <div class="px-2 pb-2">
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-extrabold text-lg sm:text-xl group-hover:text-primary transition-colors flex items-center gap-2">
+                Prisma Digital Hub
+                <span class="w-2 h-2 rounded-full bg-primary group-hover:animate-ping"></span>
+              </h3>
+              <span class="text-xs text-surface-variant font-medium">2026</span>
+            </div>
+            <p class="text-xs sm:text-sm text-surface-variant font-body leading-relaxed">
+              Strategic student organization portal for tracking research projects, publication pipelines, and member development.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 4: Web3 Hackathon Hub (Startup) -->
+        <div class="portfolio-card bg-surface rounded-3xl p-4 sm:p-5 shadow-sm border border-outline group hover:scale-[1.015] hover:shadow-xl hover:border-primary/40 transition-all duration-300 ease-out cursor-pointer" data-category="startup" data-project="web3">
+          <div class="aspect-[16/10] bg-gradient-to-br from-orange-950/80 via-black to-gray-900 rounded-2xl overflow-hidden mb-4 relative p-6 flex flex-col justify-between border border-primary/20">
+            <div class="flex justify-between items-start">
+              <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                HackQuest Event
+              </span>
+              <span class="material-symbols-outlined text-primary text-[24px]">token</span>
+            </div>
+            <div class="text-center py-2">
+              <span class="text-2xl font-extrabold text-white tracking-wide">Web3 Innovate ID</span>
+              <p class="text-xs text-gray-400 mt-1">Decentralized Builder Showcase</p>
+            </div>
+            <div class="flex justify-between items-center pt-2">
+              <span class="text-xs text-primary font-bold">500+ Participants</span>
+              <button aria-label="View Web3 Hub details" class="w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all">
+                <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+              </button>
+            </div>
+          </div>
+          <div class="px-2 pb-2">
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-extrabold text-lg sm:text-xl group-hover:text-primary transition-colors flex items-center gap-2">
+                HackQuest Innovate ID
+                <span class="w-2 h-2 rounded-full bg-primary group-hover:animate-ping"></span>
+              </h3>
+              <span class="text-xs text-surface-variant font-medium">2026</span>
+            </div>
+            <p class="text-xs sm:text-sm text-surface-variant font-body leading-relaxed">
+              Advocacy and community portal design for Web3 competitions and developer ecosystem in Indonesia.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= TESTIMONIALS SLIDER SECTION ================= -->
+      <div class="bg-inverse-surface rounded-[2.5rem] sm:rounded-[3rem] p-6 sm:p-10 md:p-14 relative overflow-hidden text-white" id="testimonials">
+        <div class="absolute top-6 right-8 sm:right-16 text-white/5 text-8xl sm:text-9xl font-serif select-none pointer-events-none">“</div>
+        
+        <div class="relative z-10">
+          <div class="text-center mb-8 sm:mb-12">
+            <span class="text-primary font-bold text-xs uppercase tracking-widest block mb-1">Social Proof</span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold">
+              Testimonials that<br/>Speak to <span class="text-primary">My Results</span>
+            </h2>
+          </div>
+
+          <!-- Testimonial Carousel Track Container -->
+          <div class="relative overflow-hidden">
+            <div id="testimonial-track" class="flex transition-transform duration-500 ease-out">
+              
+              <!-- Slide 1 -->
+              <div class="w-full shrink-0 px-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div class="bg-[#262626] p-6 sm:p-8 rounded-3xl border border-white/10 hover:border-primary/40 transition-colors">
+                    <div class="flex items-center text-primary mb-3">
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="text-white text-xs sm:text-sm font-bold ml-2">5.0</span>
+                    </div>
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6 font-body">
+                      “Rafif demonstrated exceptional leadership and strategic project management skills during our organization's flagship events. His coordination speed and clear communication made a decisive difference.”
+                    </p>
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-full bg-primary/30 text-primary font-bold flex items-center justify-center">UP</div>
+                      <div>
+                        <h4 class="text-white text-sm font-bold">UKM Prisma</h4>
+                        <p class="text-gray-400 text-xs font-body">Executive Board</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-[#262626] p-6 sm:p-8 rounded-3xl border border-white/10 hover:border-primary/40 transition-colors">
+                    <div class="flex items-center text-primary mb-3">
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="text-white text-xs sm:text-sm font-bold ml-2">5.0</span>
+                    </div>
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6 font-body">
+                      “Outstanding work on the Arume Perfume project. The AI & IoT business model pitch and interactive interface were modern, highly intuitive, and met high professional standards.”
+                    </p>
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-full bg-orange-500/30 text-orange-400 font-bold flex items-center justify-center">AF</div>
+                      <div>
+                        <h4 class="text-white text-sm font-bold">AIESEC Future Leaders</h4>
+                        <p class="text-gray-400 text-xs font-body">Project Mentor</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="w-full shrink-0 px-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div class="bg-[#262626] p-6 sm:p-8 rounded-3xl border border-white/10 hover:border-primary/40 transition-colors">
+                    <div class="flex items-center text-primary mb-3">
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="text-white text-xs sm:text-sm font-bold ml-2">5.0</span>
+                    </div>
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6 font-body">
+                      “Rafif's dedication during our cross-border volunteer program in Kuala Lumpur was inspiring. He created engaging educational materials and built great rapport with youth delegates.”
+                    </p>
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-full bg-blue-500/30 text-blue-400 font-bold flex items-center justify-center">YA</div>
+                      <div>
+                        <h4 class="text-white text-sm font-bold">Youth.ID ASEAN</h4>
+                        <p class="text-gray-400 text-xs font-body">Program Director</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-[#262626] p-6 sm:p-8 rounded-3xl border border-white/10 hover:border-primary/40 transition-colors">
+                    <div class="flex items-center text-primary mb-3">
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
+                      <span class="text-white text-xs sm:text-sm font-bold ml-2">5.0</span>
+                    </div>
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6 font-body">
+                      “Great grasp of digital business frameworks and web design best practices. Highly disciplined and analytical in approaching complex business challenges.”
+                    </p>
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-full bg-purple-500/30 text-purple-400 font-bold flex items-center justify-center">HQ</div>
+                      <div>
+                        <h4 class="text-white text-sm font-bold">HackQuest ID</h4>
+                        <p class="text-gray-400 text-xs font-body">Community Lead</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <div class="flex items-center justify-center gap-4 mt-8">
+            <button id="testimonial-prev" aria-label="Previous Testimonial" class="w-10 h-10 rounded-full border border-white/20 text-white flex items-center justify-center hover:bg-white/10 hover:border-white transition-all duration-200 active:scale-95">
+              <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+            </button>
+            
+            <div class="flex gap-2" id="testimonial-dots">
+              <button class="w-2.5 h-2.5 rounded-full bg-primary transition-all duration-300" data-index="0" aria-label="Slide 1"></button>
+              <button class="w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300" data-index="1" aria-label="Slide 2"></button>
+            </div>
+
+            <button id="testimonial-next" aria-label="Next Testimonial" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-hover shadow-lg hover:shadow-[0_0_15px_rgba(240,78,35,0.4)] transition-all duration-200 active:scale-95">
+              <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CONTACT CTA & FOOTER ================= -->
+  <footer class="bg-surface pt-16 md:pt-section reveal relative" id="contact">
+    <div class="max-w-3xl mx-auto px-4 sm:px-gutter text-center mb-16">
+      <span class="text-primary font-bold text-xs uppercase tracking-widest block mb-1">Get In Touch</span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 sm:mb-8 leading-tight">
+        Have An Awesome Project<br/>Idea? <span class="text-primary">Let's Discuss</span>
+      </h2>
+
+      <!-- Interactive Call Booking & Email Form -->
+      <form id="contact-form" class="flex flex-col sm:flex-row items-center p-1.5 border border-outline rounded-full max-w-lg mx-auto mb-8 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 focus-within:border-primary/60 focus-within:ring-2 focus-within:ring-primary/20">
+        <div class="flex items-center pl-4 text-gray-400 w-full sm:w-auto">
+          <span class="material-symbols-outlined text-[20px]">mail</span>
+        </div>
+        <input 
+          id="contact-email"
+          required 
+          class="border-none focus:ring-0 w-full px-3 py-2 text-sm bg-transparent text-on-surface placeholder:text-gray-400" 
+          placeholder="Enter your email address" 
+          type="email"
+        />
+        <button 
+          type="submit" 
+          class="bg-primary text-white px-6 py-3 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold hover:bg-primary-hover hover:scale-105 hover:shadow-[0_0_20px_rgba(240,78,35,0.4)] transition-all duration-200 w-full sm:w-auto mt-2 sm:mt-0 shrink-0 flex items-center justify-center gap-1.5"
+        >
+          <span>Book Call</span>
+          <span class="material-symbols-outlined text-[16px]">calendar_month</span>
+        </button>
+      </form>
+
+      <!-- Key Stats Badges -->
+      <div class="flex flex-wrap justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-surface-variant font-medium">
+        <span class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-full border border-outline/50 hover:border-primary/40 transition-colors">
+          <span class="material-symbols-outlined text-[16px] text-primary">check_circle</span> 3.70 GPA (Digital Business)
+        </span>
+        <span class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-full border border-outline/50 hover:border-primary/40 transition-colors">
+          <span class="material-symbols-outlined text-[16px] text-primary">check_circle</span> Award-Winning Projects
+        </span>
+        <span class="flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-full border border-outline/50 hover:border-primary/40 transition-colors">
+          <span class="material-symbols-outlined text-[16px] text-primary">check_circle</span> Digital Product Strategy
+        </span>
+      </div>
+    </div>
+
+    <!-- Infinite Marquee Banner -->
+    <div class="w-full overflow-hidden bg-surface-container py-4 border-y border-outline mb-12 sm:mb-16 relative">
+      <div class="whitespace-nowrap flex items-center gap-4 text-base sm:text-xl font-extrabold uppercase tracking-wider text-on-surface hover:[animation-play-state:paused] cursor-default w-[200%] animate-[marquee_22s_linear_infinite]">
+        <span class="hover:text-primary transition-colors">UI/UX Design</span> <span class="text-primary font-black">+</span>
+        <span class="hover:text-primary transition-colors">Web Development</span> <span class="text-primary font-black">+</span>
+        <span class="hover:text-primary transition-colors">Digital Business</span> <span class="text-primary font-black">+</span>
+        <span class="hover:text-primary transition-colors">Product Strategy</span> <span class="text-primary font-black">+</span>
+        <span class="hover:text-primary transition-colors">AI & IoT Solutions</span> <span class="text-primary font-black">+</span>
+        <span class="hover:text-primary transition-colors">Leadership</span> <span class="text-primary font-black">+</span>
+        <span class="hover:text-primary transition-colors">UI/UX Design</span> <span class="text-primary font-black">+</span>
+        <span class="hover:text-primary transition-colors">Web Development</span> <span class="text-primary font-black">+</span>
+        <span class="hover:text-primary transition-colors">Digital Business</span> <span class="text-primary font-black">+</span>
+        <span class="hover:text-primary transition-colors">Product Strategy</span> <span class="text-primary font-black">+</span>
+        <span class="hover:text-primary transition-colors">AI & IoT Solutions</span> <span class="text-primary font-black">+</span>
+        <span class="hover:text-primary transition-colors">Leadership</span>
+      </div>
+    </div>
+
+    <!-- Footer Bottom Bar -->
+    <div class="bg-inverse-surface rounded-t-[2.5rem] sm:rounded-t-[3rem] px-4 sm:px-gutter py-10 sm:py-12 text-white">
+      <div class="max-w-container mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">R</div>
+          <span class="font-extrabold text-lg sm:text-xl tracking-tight">Muhammad Rafif Pratama</span>
+        </div>
+        <div class="flex gap-6 text-xs sm:text-sm text-gray-400 font-medium">
+          <a class="hover:text-primary hover:underline transition-colors" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="hover:text-primary hover:underline transition-colors" href="https://dribbble.com" target="_blank" rel="noopener noreferrer">Dribbble</a>
+          <a class="hover:text-primary hover:underline transition-colors" href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <button id="copy-email-btn" class="hover:text-primary flex items-center gap-1 transition-colors">
+            <span class="material-symbols-outlined text-[14px]">content_copy</span>
+            <span>Copy Email</span>
+          </button>
+        </div>
+        <div class="text-[11px] sm:text-xs text-gray-500 font-body">
+          &copy; 2026 Muhammad Rafif Pratama. All Rights Reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODAL: PROJECT DETAIL ================= -->
+  <div id="project-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-surface rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-outline transform scale-95 transition-transform duration-300" id="project-modal-box">
+      <div class="relative">
+        <img id="modal-project-img" src="" alt="Project Preview" class="w-full h-56 sm:h-72 object-cover rounded-t-3xl bg-gray-100" />
+        <button id="close-project-modal" aria-label="Close modal" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-primary transition-colors">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+        <span id="modal-project-badge" class="absolute bottom-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+          Category
+        </span>
+      </div>
+      <div class="p-6 sm:p-8">
+        <h3 id="modal-project-title" class="text-2xl sm:text-3xl font-extrabold text-on-surface mb-2">Project Title</h3>
+        <p id="modal-project-tagline" class="text-xs sm:text-sm font-semibold text-primary mb-4">Subtitle</p>
+        <p id="modal-project-desc" class="text-xs sm:text-sm text-surface-variant font-body leading-relaxed mb-6">
+          Detailed case study content will appear here...
+        </p>
+
+        <div class="mb-6">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-surface-variant mb-2">Key Highlights & Tech Stack</h4>
+          <div id="modal-project-tags" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-outline">
+          <a id="modal-project-cta" href="#contact" class="flex-1 bg-primary text-white py-2.5 rounded-full text-center text-xs sm:text-sm font-bold hover:bg-primary-hover transition-colors flex items-center justify-center gap-1.5">
+            <span>Discuss This Project</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </a>
+          <button id="modal-close-btn" class="sm:px-6 py-2.5 rounded-full border border-outline text-xs sm:text-sm font-bold text-on-surface hover:bg-gray-100 transition-colors">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: SERVICE DETAIL ================= -->
+  <div id="service-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-surface rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl border border-outline transform scale-95 transition-transform duration-300" id="service-modal-box">
+      <div class="flex justify-between items-start mb-4">
+        <div>
+          <span id="service-modal-tag" class="text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full">Service</span>
+          <h3 id="service-modal-title" class="text-2xl font-extrabold text-on-surface mt-2">Service Name</h3>
+        </div>
+        <button id="close-service-modal" aria-label="Close modal" class="w-8 h-8 rounded-full bg-gray-100 text-gray-700 flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+      
+      <p id="service-modal-desc" class="text-xs sm:text-sm text-surface-variant font-body leading-relaxed mb-6">
+        Detailed breakdown of service scope...
+      </p>
+
+      <div class="mb-6">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-surface-variant mb-3">What's Included:</h4>
+        <ul id="service-modal-deliverables" class="space-y-2 text-xs sm:text-sm font-medium text-on-surface font-body"></ul>
+      </div>
+
+      <div class="flex gap-3 pt-4 border-t border-outline">
+        <a href="#contact" id="service-inquire-btn" class="flex-1 bg-primary text-white py-2.5 rounded-full text-center text-xs sm:text-sm font-bold hover:bg-primary-hover transition-colors">
+          Inquire This Service →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: BOOK CALL / CONTACT SUCCESS ================= -->
+  <div id="booking-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-surface rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-outline transform scale-95 transition-transform duration-300 text-center" id="booking-modal-box">
+      <div class="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="material-symbols-outlined text-[32px]">check_circle</span>
+      </div>
+      <h3 class="text-xl sm:text-2xl font-extrabold text-on-surface mb-2">Thank You for Reaching Out!</h3>
+      <p class="text-xs sm:text-sm text-surface-variant font-body mb-6 leading-relaxed">
+        We've received your request (<span id="user-submitted-email" class="font-bold text-primary"></span>). Rafif will get back to you within 24 hours to schedule our discovery call.
+      </p>
+      <div class="bg-surface-container rounded-2xl p-4 mb-6 border border-outline/60 text-left">
+        <div class="text-xs font-bold text-on-surface mb-1 flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px] text-primary">schedule</span> Preferred Meeting Schedule
+        </div>
+        <p class="text-xs text-surface-variant font-body">Google Meet / Zoom (15-30 Min Discovery Consultation)</p>
+      </div>
+      <button id="close-booking-modal" class="w-full bg-primary text-white py-2.5 rounded-full text-xs sm:text-sm font-bold hover:bg-primary-hover transition-colors">
+        Great, Got It!
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= TOAST NOTIFICATION ================= -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-inverse-surface text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/10 opacity-0 pointer-events-none transition-all duration-300 translate-y-4">
+    <span class="material-symbols-outlined text-primary text-[20px]" id="toast-icon">info</span>
+    <span class="text-xs sm:text-sm font-medium" id="toast-message">Notification message</span>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
