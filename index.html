@@ -456,32 +456,40 @@
         
         <!-- Card 1: Arume Perfume -->
         <div class="portfolio-card bg-surface rounded-3xl p-4 sm:p-5 shadow-sm border border-outline group hover:scale-[1.015] hover:shadow-xl hover:border-primary/40 transition-all duration-300 ease-out cursor-pointer" data-category="startup" data-project="arume">
-          <div class="aspect-[16/10] bg-gray-100 rounded-2xl overflow-hidden mb-4 relative">
+          <div class="aspect-[16/10] bg-gradient-to-br from-[#12141a] via-[#1a1c24] to-[#0f1117] rounded-2xl overflow-hidden mb-4 relative flex items-center justify-center p-3 border border-white/5">
             <img 
-              alt="Arume Perfume Smart Dashboard" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt2k6Y4ZDe4Xo2cb07mfk_LmrfkV132v6jWqHljCKEn6rFmph91BxTtSa91tWk2HpFMYUxqoQk2bVEU03Iq9Fn9agBUGLIR2U1Bs-5nRUKNoZGSjlSuaiY-mJ26w-J5KlyFZHvXcZALPG7UsmdDbF9iOPI0pGL4QXMd72ebptwcpaYUlwQYku3k5XFTTPim39dBT-9jPYhUbQIttn77O3oryr0Zs94nI_uQ502u4mWRovq4Zc2bT0I"
+              alt="Arumé Perfume Smart Bottle" 
+              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" 
+              src="https://arume-perfume.vercel.app/assets/arume_smart_bottle.png"
               loading="lazy"
             />
             <div class="absolute bottom-3 left-3 right-3 flex justify-between items-end">
-              <span class="bg-white/95 backdrop-blur-md text-xs font-bold px-3 py-1 rounded-full text-on-surface shadow-sm group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                AI & IoT Startup
+              <span class="bg-black/70 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/20 shadow-sm group-hover:bg-primary group-hover:border-primary transition-colors duration-300">
+                AI & IoT Modular Perfume
               </span>
-              <button aria-label="View Arume details" class="w-10 h-10 bg-inverse-surface text-white rounded-full flex items-center justify-center shadow-lg group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
-              </button>
+              <div class="flex items-center gap-2">
+                <a href="https://arume-perfume.vercel.app" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="Visit Arumé Live Website" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:bg-primary-hover transition-all duration-300" title="Visit Live App">
+                  <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                </a>
+                <button aria-label="View Arumé details" class="w-10 h-10 bg-white/20 backdrop-blur-md text-white rounded-full flex items-center justify-center shadow-lg hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                  <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+                </button>
+              </div>
             </div>
           </div>
           <div class="px-2 pb-2">
             <div class="flex items-center justify-between mb-1">
               <h3 class="font-extrabold text-lg sm:text-xl group-hover:text-primary transition-colors flex items-center gap-2">
-                Arume Perfume 
+                Arumé Perfume 
                 <span class="w-2 h-2 rounded-full bg-primary group-hover:animate-ping"></span>
               </h3>
-              <span class="text-xs text-surface-variant font-medium">2026</span>
+              <a href="https://arume-perfume.vercel.app" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="text-xs text-primary font-bold bg-primary/10 hover:bg-primary hover:text-white px-2.5 py-0.5 rounded-full transition-colors inline-flex items-center gap-1">
+                <span>Live App</span>
+                <span class="material-symbols-outlined text-[12px]">arrow_outward</span>
+              </a>
             </div>
             <p class="text-xs sm:text-sm text-surface-variant font-body leading-relaxed">
-              Led the development and business model canvas of an AI & IoT-based smart personalized fragrance system.
+              Infinite Scents, One Vessel — IoT & AI-driven modular fragrance with ESP32 S3 smart bottle & scent layering engine.
             </p>
           </div>
         </div>
@@ -837,8 +845,12 @@
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-outline">
-          <a id="modal-project-cta" href="#contact" class="flex-1 bg-primary text-white py-2.5 rounded-full text-center text-xs sm:text-sm font-bold hover:bg-primary-hover transition-colors flex items-center justify-center gap-1.5">
-            <span>Discuss This Project</span>
+          <a id="modal-project-live" href="https://arume-perfume.vercel.app" target="_blank" rel="noopener noreferrer" class="bg-primary text-white py-2.5 px-6 rounded-full text-center text-xs sm:text-sm font-bold hover:bg-primary-hover transition-colors flex items-center justify-center gap-1.5 shadow-md">
+            <span>Visit Live App</span>
+            <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+          </a>
+          <a id="modal-project-cta" href="#contact" class="flex-1 bg-surface-container border border-outline hover:border-primary text-on-surface hover:text-primary py-2.5 rounded-full text-center text-xs sm:text-sm font-bold transition-colors flex items-center justify-center gap-1.5">
+            <span>Discuss Project</span>
             <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
           </a>
           <button id="modal-close-btn" class="sm:px-6 py-2.5 rounded-full border border-outline text-xs sm:text-sm font-bold text-on-surface hover:bg-gray-100 transition-colors">

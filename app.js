@@ -136,18 +136,20 @@ function initPortfolioFilter() {
    =================================================== */
 const projectData = {
   arume: {
-    title: 'Arume Perfume',
-    tagline: 'AI & IoT Smart Fragrance Innovation System',
+    title: 'Arumé Perfume — Infinite Scents, One Vessel',
+    tagline: 'Premium AI-IoT Modular Perfume System | CEO & Project Lead',
     category: 'AI & IoT Startup',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBt2k6Y4ZDe4Xo2cb07mfk_LmrfkV132v6jWqHljCKEn6rFmph91BxTtSa91tWk2HpFMYUxqoQk2bVEU03Iq9Fn9agBUGLIR2U1Bs-5nRUKNoZGSjlSuaiY-mJ26w-J5KlyFZHvXcZALPG7UsmdDbF9iOPI0pGL4QXMd72ebptwcpaYUlwQYku3k5XFTTPim39dBT-9jPYhUbQIttn77O3oryr0Zs94nI_uQ502u4mWRovq4Zc2bT0I',
-    description: 'Arume Perfume combines machine learning algorithms with smart diffuser IoT hardware to personalize scents according to ambient room temperature, user biometric mood, and daily schedule. Spearheaded the digital business model canvas, investor pitch deck, and responsive dashboard UI.',
-    tags: ['Business Model Canvas', 'Figma Prototyping', 'IoT System Architecture', 'Market Validation', 'UI/UX Design']
+    image: 'https://arume-perfume.vercel.app/assets/arume_smart_bottle.png',
+    liveUrl: 'https://arume-perfume.vercel.app',
+    description: 'Arumé adalah platform wewangian modular cerdas berbasis IoT & AI pertama di iklim tropis. Mengintegrasikan botol pintar berbasis ESP32 S3 dengan 4 katrid aroma utama, mikro-pompa presisi, dan aplikasi mobile untuk layering aroma personal secara real-time. Muhammad Rafif Pratama berperan sebagai Chief Executive Officer (CEO) yang memimpin perancangan strategi bisnis komersial, arsitektur IoT, dan komitmen keberlanjutan (SDGs 9 & 12).',
+    tags: ['ESP32 S3 IoT', 'AI Scent Layering', 'Solenoid Micropump', 'SDG 9 & 12', 'Business Model Canvas', 'Chief Executive Officer']
   },
   fore: {
     title: 'Fore Coffee Redesign',
     tagline: 'High-Converting Mobile-First Web Experience',
     category: 'Landing Page & UI',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCMGIMokKaC_tgxR07EpiTfvZzMFX2-Wl6lOSRdQbosqgxH8McXyuWXx6_PJhcCQlr9zkNyTL8QF5EZ1TIXERjviTGnQwqyOSg3FD9xvrRcr02YicOY5CaTe_73CWMW1FvHc-C0f1iahUjE8Vw-7lGBJssVnPCye87_OkW7os8dFx9BZGIHYHnUs9jvFbl3jZ18bqS3ihN_dmrRPmz3HA2BBhK9ONUMgCxmUsZKrDXPuT8vnM5Eux-N',
+    liveUrl: '#',
     description: 'A concept redesign for Fore Coffee focusing on streamlining the online ordering funnel, showcasing artisanal coffee bean origin stories, and accelerating subscription renewals with optimized micro-interactions and smooth checkout UX.',
     tags: ['E-Commerce UX', 'Tailwind CSS', 'Responsive Layout', 'Conversion Rate Optimization', 'Design System']
   },
@@ -156,6 +158,7 @@ const projectData = {
     tagline: 'Integrated Student Organization Management Portal',
     category: 'Organization Platform',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBt2k6Y4ZDe4Xo2cb07mfk_LmrfkV132v6jWqHljCKEn6rFmph91BxTtSa91tWk2HpFMYUxqoQk2bVEU03Iq9Fn9agBUGLIR2U1Bs-5nRUKNoZGSjlSuaiY-mJ26w-J5KlyFZHvXcZALPG7UsmdDbF9iOPI0pGL4QXMd72ebptwcpaYUlwQYku3k5XFTTPim39dBT-9jPYhUbQIttn77O3oryr0Zs94nI_uQ502u4mWRovq4Zc2bT0I',
+    liveUrl: '#',
     description: 'An end-to-end digital dashboard engineered for UKM Prisma UMS to supervise member recruitment, research paper submissions, event budgets, and collaborative workshop milestones.',
     tags: ['Dashboard Architecture', 'Role-Based Access', 'Data Analytics', 'Leadership Operations', 'Workflow Automation']
   },
@@ -164,6 +167,7 @@ const projectData = {
     tagline: 'Web3 Developer Ecosystem & Hackathon Platform',
     category: 'Web3 & Community',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCMGIMokKaC_tgxR07EpiTfvZzMFX2-Wl6lOSRdQbosqgxH8McXyuWXx6_PJhcCQlr9zkNyTL8QF5EZ1TIXERjviTGnQwqyOSg3FD9xvrRcr02YicOY5CaTe_73CWMW1FvHc-C0f1iahUjE8Vw-7lGBJssVnPCye87_OkW7os8dFx9BZGIHYHnUs9jvFbl3jZ18bqS3ihN_dmrRPmz3HA2BBhK9ONUMgCxmUsZKrDXPuT8vnM5Eux-N',
+    liveUrl: '#',
     description: 'Community platform and registration portal for HackQuest Indonesia Web3 competition. Features hackathon track guides, mentor matching, and submission showcases.',
     tags: ['Web3 Ecosystem', 'Community Engagement', 'Event Technology', 'Promotional Campaign', 'UI/UX']
   }
@@ -173,6 +177,7 @@ function initProjectModals() {
   const modal = document.getElementById('project-modal');
   const closeBtn = document.getElementById('close-project-modal');
   const modalCloseBtn = document.getElementById('modal-close-btn');
+  const liveBtn = document.getElementById('modal-project-live');
   const projectCards = document.querySelectorAll('.portfolio-card');
 
   if (!modal) return;
@@ -187,6 +192,15 @@ function initProjectModals() {
     document.getElementById('modal-project-title').textContent = data.title;
     document.getElementById('modal-project-tagline').textContent = data.tagline;
     document.getElementById('modal-project-desc').textContent = data.description;
+
+    if (liveBtn) {
+      if (data.liveUrl && data.liveUrl !== '#') {
+        liveBtn.href = data.liveUrl;
+        liveBtn.style.display = 'inline-flex';
+      } else {
+        liveBtn.style.display = 'none';
+      }
+    }
 
     const tagsContainer = document.getElementById('modal-project-tags');
     tagsContainer.innerHTML = '';
