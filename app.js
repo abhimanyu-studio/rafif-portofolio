@@ -521,7 +521,7 @@ function initCopyEmail() {
   const copyBtn = document.getElementById('copy-email-btn');
   if (!copyBtn) return;
 
-  const emailToCopy = 'rafifpratama@gmail.com';
+  const emailToCopy = 'ar.abhimanyu2915@gmail.com';
 
   copyBtn.addEventListener('click', () => {
     if (navigator.clipboard && window.isSecureContext) {
