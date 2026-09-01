@@ -141,10 +141,10 @@
   </div>
 
   <!-- ================= HERO SECTION ================= -->
-  <section class="pt-32 sm:pt-40 pb-16 md:pb-section px-4 sm:px-gutter max-w-container mx-auto text-center relative overflow-hidden bg-surface rounded-b-[2.5rem] sm:rounded-b-[4rem] shadow-sm" id="home">
+  <section class="pt-28 sm:pt-36 pb-0 px-4 sm:px-gutter max-w-container mx-auto text-center relative overflow-hidden bg-surface rounded-b-[2.5rem] sm:rounded-b-[3.5rem] shadow-sm" id="home">
     
     <!-- Greeting Pill -->
-    <div class="inline-flex items-center gap-2 border border-outline bg-surface-container/60 rounded-full px-4 py-1.5 mb-6 sm:mb-8 opacity-0 animate-fade-in-up delay-100 hover:border-primary hover:text-primary hover:shadow-md transition-all duration-300 cursor-default">
+    <div class="inline-flex items-center gap-2 border border-outline bg-surface-container/60 rounded-full px-4 py-1.5 mb-6 opacity-0 animate-fade-in-up delay-100 hover:border-primary hover:text-primary hover:shadow-md transition-all duration-300 cursor-default">
       <span class="text-xs sm:text-sm font-semibold tracking-wide">Hello!</span>
       <span class="material-symbols-outlined text-[16px] sm:text-[18px] text-primary animate-bounce">waving_hand</span>
     </div>
@@ -156,13 +156,13 @@
     </h1>
 
     <!-- Hero Content & Stats Grid -->
-    <div class="relative max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between mt-4 sm:mt-12 md:mt-20 gap-8 md:gap-0">
+    <div class="relative max-w-5xl mx-auto flex flex-col md:flex-row items-end justify-between gap-6 md:gap-0 mt-4 sm:mt-8">
       
       <!-- Left Stats (Desktop) -->
-      <div class="text-left hidden md:block w-48 relative z-10 opacity-0 animate-fade-in-up delay-300 hover:-translate-y-1 transition-transform duration-300 bg-white/80 p-3 rounded-2xl border border-transparent hover:border-outline">
+      <div class="text-left hidden md:block w-52 relative z-10 opacity-0 animate-fade-in-up delay-300 mb-14 bg-white/90 backdrop-blur-sm p-4 rounded-2xl border border-outline/70 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
         <span class="text-4xl text-primary/30 absolute -top-5 -left-2 font-serif font-bold">“</span>
         <p class="text-xs text-surface-variant mb-4 font-medium leading-relaxed font-body">
-          Digital Business undergraduate with strong passion in digital innovation & product design.
+          Digital Business undergraduate with strong passion in digital innovation &amp; product strategy.
         </p>
         <div class="flex items-baseline gap-2">
           <span class="text-3xl font-extrabold text-primary">3.70</span>
@@ -171,35 +171,38 @@
         <p class="text-xs text-surface-variant font-semibold">Current GPA</p>
       </div>
 
-      <!-- Center Interactive Image -->
+      <!-- Center Hero Showcase with Bottom-Anchored Circle & Flat Cut Photo -->
       <div class="relative flex-1 flex justify-center opacity-0 animate-fade-in-up delay-300 w-full">
-        <div class="relative w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] md:w-[380px] md:h-[380px] animate-float">
+        <div class="relative w-[280px] sm:w-[350px] md:w-[420px] h-[300px] sm:h-[370px] md:h-[440px] flex items-end justify-center">
           
-          <!-- Orange Background Circle with Glow -->
-          <div class="absolute inset-0 bg-gradient-to-tr from-primary to-orange-500 rounded-full transform translate-y-6 sm:translate-y-8 shadow-[0_15px_40px_rgba(240,78,35,0.3)] transition-transform duration-500 hover:scale-105"></div>
+          <!-- Orange Background Arch touching the bottom edge -->
+          <div class="absolute bottom-0 w-[260px] h-[260px] sm:w-[330px] sm:h-[330px] md:w-[400px] md:h-[400px] bg-gradient-to-t from-primary via-[#f04e23] to-[#ff6b3d] rounded-t-full shadow-[0_15px_40px_rgba(240,78,35,0.25)]"></div>
           
-          <!-- Profile Photo -->
-          <img 
-            alt="Muhammad Rafif Pratama" 
-            class="absolute inset-0 w-full h-full object-cover clip-circle transform scale-[1.12] -translate-y-6 sm:-translate-y-8 transition-transform duration-500 hover:scale-115 pointer-events-none select-none" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAouBXX87ZN75vLOrVpe6rht5eXa77RR9nGg-LpytVgrwVawvXbqXaz2A5sUGnUJvu5kHs0uF77qym4QwBRryOp5mgavd8MY246bnK4kxGiRgjyUmPplJuVHXMgY98nYZbecUdc-HhMoaPTQe7hP0pq3NbE_IZdgkoULfMQShA1a6Owj33pFKuiVPYHEh-fmdq9ig5Fxw9YSP7-6FanMQ1qjPctnT4SDCt_FN6Q2ai5yY-bSMCKEthW5Ezx68HhfgiF-vPQgFXsifxhCQ"
-            loading="eager"
-          />
+          <!-- Profile Photo with Horizontal Flat Bottom Cut -->
+          <div class="relative z-10 w-[240px] sm:w-[300px] md:w-[360px] h-[300px] sm:h-[370px] md:h-[440px] flex items-end justify-center overflow-hidden">
+            <img 
+              alt="Muhammad Rafif Pratama" 
+              class="w-full h-full object-contain object-bottom pointer-events-none select-none transform hover:scale-105 transition-transform duration-500" 
+              src="assets/profile_rafif.png"
+              loading="eager"
+            />
+          </div>
 
-          <!-- Action Floating Pill Buttons -->
-          <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 flex items-center bg-surface/95 backdrop-blur-md rounded-full shadow-xl border border-outline/80 p-1.5 z-20 whitespace-nowrap hover:shadow-2xl transition-all duration-300">
-            <a class="bg-primary text-white px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1.5 hover:bg-primary-hover hover:scale-105 hover:shadow-[0_0_20px_rgba(240,78,35,0.4)] transition-all duration-200" href="#projects">
+          <!-- Action Floating Pill Buttons (Portfolio ↗ | Hire Me) -->
+          <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex items-center bg-white/95 backdrop-blur-md rounded-full shadow-2xl border border-outline/90 p-1.5 z-20 whitespace-nowrap hover:scale-105 transition-all duration-300">
+            <a class="bg-primary text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1.5 hover:bg-primary-hover shadow-md hover:shadow-[0_0_20px_rgba(240,78,35,0.4)] transition-all duration-200" href="#projects">
               Portfolio <span class="material-symbols-outlined text-[15px]">arrow_outward</span>
             </a>
-            <a class="px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold text-on-surface hover:text-primary hover:bg-surface-container transition-all duration-200" href="#contact">
+            <a class="px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold text-on-surface hover:text-primary hover:bg-gray-100 transition-all duration-200" href="#contact">
               Hire Me
             </a>
           </div>
+
         </div>
       </div>
 
       <!-- Right Stats (Desktop) -->
-      <div class="text-right hidden md:block w-48 relative z-10 opacity-0 animate-fade-in-up delay-400 hover:-translate-y-1 transition-transform duration-300 bg-white/80 p-3 rounded-2xl border border-transparent hover:border-outline">
+      <div class="text-right hidden md:block w-52 relative z-10 opacity-0 animate-fade-in-up delay-400 mb-14 bg-white/90 backdrop-blur-sm p-4 rounded-2xl border border-outline/70 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
         <div class="flex justify-end text-primary mb-2 gap-0.5">
           <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
           <span class="material-symbols-outlined text-[18px]" style='font-variation-settings: "FILL" 1;'>star</span>
@@ -211,12 +214,13 @@
           <span class="text-3xl font-extrabold text-primary">2+ Years</span>
         </div>
         <p class="text-xs text-surface-variant font-semibold uppercase tracking-wider">Experience</p>
-        <p class="text-[11px] text-surface-variant/80 font-body mt-1">Tech & Leadership</p>
+        <p class="text-[11px] text-surface-variant/80 font-body mt-1">Tech &amp; Leadership</p>
       </div>
+
     </div>
 
     <!-- Mobile-Only Responsive Stats Row -->
-    <div class="grid grid-cols-2 gap-3 mt-12 md:hidden pt-4 max-w-sm mx-auto">
+    <div class="grid grid-cols-2 gap-3 my-8 md:hidden px-4 max-w-sm mx-auto">
       <div class="bg-surface-container/90 border border-outline rounded-2xl p-3.5 text-center shadow-sm">
         <div class="text-2xl font-extrabold text-primary">3.70</div>
         <div class="text-xs font-semibold text-on-surface mt-0.5">Current GPA</div>
@@ -238,7 +242,7 @@
   </section>
 
   <!-- ================= SERVICES SECTION ================= -->
-  <section class="py-16 md:py-section bg-inverse-surface rounded-[2.5rem] sm:rounded-[3rem] -mt-6 sm:-mt-10 relative z-10 px-4 sm:px-gutter reveal" id="services">
+  <section class="py-16 md:py-section bg-inverse-surface rounded-[2.5rem] sm:rounded-[3rem] -mt-6 sm:-mt-8 relative z-10 px-4 sm:px-gutter reveal" id="services">
     <div class="max-w-container mx-auto">
       
       <!-- Section Header -->
