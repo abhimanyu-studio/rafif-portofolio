@@ -513,16 +513,23 @@ function initContactForm() {
           email: email,
           subject: subject,
           message: message,
-          _subject: `New Project Inquiry from ${name}: ${subject}`,
-          _template: 'table'
+          _subject: `Portfolio Inquiry from ${name} [${subject}]`,
+          _template: 'table',
+          _captcha: 'false'
         })
       });
 
       const result = await response.json();
 
-      if (response.ok || result.success === 'true' || result.success === true) {
-        showToast('Message sent directly to Rafif (ar.abhimanyu2915@gmail.com)!', 'check_circle');
+      if (result.success === 'true' || result.success === true || (response.ok && !result.message?.includes('Activation'))) {
+        showToast('Message sent! Check ar.abhimanyu2915@gmail.com', 'check_circle');
         form.reset();
+      } else if (result.message && result.message.includes('Activation')) {
+        showToast('Aktivasi Diperlukan: Buka inbox/spam email ar.abhimanyu2915@gmail.com lalu klik "Activate Form"!', 'mail');
+        // Trigger backup direct submission
+        setTimeout(() => {
+          form.submit();
+        }, 1500);
       } else {
         // Fallback Form Submission
         form.submit();
