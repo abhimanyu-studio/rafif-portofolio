@@ -684,32 +684,10 @@ function initCursorTrail() {
   const HEAD_WIDTH = 26;     // Soft, thick aura at cursor tip
   const TAIL_WIDTH = 2;      // Tapered sharp tail tip
 
-  function isOverEmptySpace(target) {
-    if (!target) return true;
-
-    // 1. Interactive clickable elements, inputs, modals, cards
-    if (target.closest('a, button, input, textarea, select, label, form, .service-card, .project-card, [role="button"], #mobile-drawer, #service-modal, #project-modal, #booking-modal, .cursor-pointer')) {
-      return false;
-    }
-
-    // 2. Direct text / headings / paragraphs / lists / icons / images
-    if (target.closest('h1, h2, h3, h4, h5, h6, p, li, blockquote, img, svg, video, iframe, .material-symbols-outlined, figure')) {
-      return false;
-    }
-
-    return true;
-  }
-
   window.addEventListener('mousemove', (e) => {
     const mouseX = e.clientX;
     const mouseY = e.clientY;
     const now = performance.now();
-
-    // Only spawn trail when hovering on empty background space
-    if (!isOverEmptySpace(e.target)) {
-      lastPos = null;
-      return;
-    }
 
     if (lastPos) {
       const dx = mouseX - lastPos.x;
