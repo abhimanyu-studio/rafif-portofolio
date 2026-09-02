@@ -645,7 +645,7 @@ function initNavScrollSpy() {
 }
 
 /* ===================================================
-   10. Meteor Tail / Fluid Brush Cursor Trail
+   10. Soft Gaussian Motion Blur Cursor Trail (3cm Max)
    =================================================== */
 function initCursorTrail() {
   let canvas = document.getElementById('cursor-trail-canvas');
@@ -678,10 +678,11 @@ function initCursorTrail() {
 
   const points = [];
   let lastPos = null;
-  const MAX_AGE = 420;     // Lifespan in ms for comet tail decay
-  const STEP_DIST = 3.5;   // Dense interpolation for silky smooth stroke
-  const HEAD_WIDTH = 18;   // Maximum stroke width at cursor tip
-  const TAIL_WIDTH = 1;    // Tapered sharp width at tail tip
+  const MAX_AGE = 160;       // Very short lifespan (~160ms) for tight ~3cm tail
+  const MAX_DISTANCE = 95;   // Maximum tail length strictly capped at ~3cm (~95px)
+  const STEP_DIST = 2.5;     // Ultra-dense interpolation for seamless continuity
+  const HEAD_WIDTH = 26;     // Soft, thick aura at cursor tip
+  const TAIL_WIDTH = 2;      // Tapered sharp tail tip
 
   function isOverEmptySpace(target) {
     if (!target) return true;
@@ -704,7 +705,7 @@ function initCursorTrail() {
     const mouseY = e.clientY;
     const now = performance.now();
 
-    // Only spawn meteor trail when hovering on empty background space
+    // Only spawn trail when hovering on empty background space
     if (!isOverEmptySpace(e.target)) {
       lastPos = null;
       return;
@@ -744,28 +745,41 @@ function initCursorTrail() {
   function render(now) {
     ctx.clearRect(0, 0, width, height);
 
-    // Remove expired tail points
+    // Filter expired points by time
     while (points.length > 0 && now - points[0].birth >= MAX_AGE) {
       points.shift();
     }
 
+    // Cap maximum tail length strictly to ~3cm (MAX_DISTANCE)
     if (points.length >= 2) {
+      let accumDist = 0;
+      let cutIndex = 0;
+      for (let i = points.length - 1; i > 0; i--) {
+        const d = Math.hypot(points[i].x - points[i - 1].x, points[i].y - points[i - 1].y);
+        accumDist += d;
+        if (accumDist > MAX_DISTANCE) {
+          cutIndex = i;
+          break;
+        }
+      }
+      if (cutIndex > 0) {
+        points.splice(0, cutIndex);
+      }
+    }
+
+    if (points.length >= 2) {
+      ctx.save();
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
 
-      // Draw tapered continuous brush stroke from tail to head
+      // Pass 1: Outer Soft Gaussian Glow (Silky Smoky Blur)
+      ctx.filter = 'blur(10px)';
       for (let i = 0; i < points.length - 1; i++) {
         const p1 = points[i];
         const p2 = points[i + 1];
-
-        const age = now - p2.birth;
-        const progress = Math.min(1, Math.max(0, age / MAX_AGE)); // 0 at head, 1 at tail
-        const lifeRatio = 1 - progress; // 1 at head, 0 at tail
-
-        // Taper stroke width smoothly
-        const lineWidth = TAIL_WIDTH + (HEAD_WIDTH - TAIL_WIDTH) * Math.pow(lifeRatio, 1.3);
-        // Fade opacity smoothly
-        const alpha = Math.max(0, 0.88 * Math.pow(lifeRatio, 0.85));
+        const progress = i / (points.length - 1); // 0 at tail, 1 at head
+        const lineWidth = TAIL_WIDTH + (HEAD_WIDTH - TAIL_WIDTH) * Math.pow(progress, 1.2);
+        const alpha = 0.85 * Math.pow(progress, 0.9);
 
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
@@ -775,24 +789,24 @@ function initCursorTrail() {
         ctx.stroke();
       }
 
-      // Draw glowing comet head at leading point
-      const head = points[points.length - 1];
-      const headAge = now - head.birth;
-      if (headAge < 150) {
-        const headAlpha = (1 - headAge / 150) * 0.95;
-        
-        // Outer soft glow
-        ctx.beginPath();
-        ctx.arc(head.x, head.y, HEAD_WIDTH / 2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 110, 40, ${headAlpha.toFixed(3)})`;
-        ctx.fill();
+      // Pass 2: Inner Core Motion Soft Blur
+      ctx.filter = 'blur(4px)';
+      for (let i = 0; i < points.length - 1; i++) {
+        const p1 = points[i];
+        const p2 = points[i + 1];
+        const progress = i / (points.length - 1); // 0 at tail, 1 at head
+        const lineWidth = Math.max(1, (TAIL_WIDTH + (HEAD_WIDTH * 0.6 - TAIL_WIDTH) * Math.pow(progress, 1.4)));
+        const alpha = 0.95 * Math.pow(progress, 0.7);
 
-        // Inner bright core
         ctx.beginPath();
-        ctx.arc(head.x, head.y, HEAD_WIDTH / 3.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 200, 150, ${headAlpha.toFixed(3)})`;
-        ctx.fill();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.lineWidth = lineWidth;
+        ctx.strokeStyle = `rgba(255, 110, 45, ${alpha.toFixed(3)})`;
+        ctx.stroke();
       }
+
+      ctx.restore();
     }
 
     requestAnimationFrame(render);
