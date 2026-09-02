@@ -826,7 +826,7 @@ function initActivitiesSlider() {
     const maxIdx = getMaxIndex();
     for (let i = 0; i <= maxIdx; i++) {
       const dot = document.createElement('button');
-      dot.className = `h-2.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-primary w-7' : 'bg-outline w-2.5 hover:bg-surface-variant'}`;
+      dot.className = `h-2.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-primary w-7' : 'bg-white/20 w-2.5 hover:bg-white/40'}`;
       dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
       dot.addEventListener('click', () => {
         currentIndex = i;
@@ -844,7 +844,7 @@ function initActivitiesSlider() {
     const card = cards[0];
     if (card) {
       const cardRect = card.getBoundingClientRect();
-      const gap = 20; // 20px gap
+      const gap = 24; // 24px gap (gap-6)
       const offset = currentIndex * (cardRect.width + gap);
       track.style.transform = `translateX(-${offset}px)`;
     }
@@ -865,7 +865,7 @@ function initActivitiesSlider() {
         if (i === currentIndex) {
           dots[i].className = 'w-7 h-2.5 rounded-full bg-primary transition-all duration-300';
         } else {
-          dots[i].className = 'w-2.5 h-2.5 rounded-full bg-outline hover:bg-surface-variant transition-all duration-300';
+          dots[i].className = 'w-2.5 h-2.5 rounded-full bg-white/20 hover:bg-white/40 transition-all duration-300';
         }
       }
     }
