@@ -460,54 +460,84 @@ function initTestimonialsSlider() {
 }
 
 /* ===================================================
-   7. Contact Form & Booking Modal
+   7. Contact Form & Direct Email Submission
    =================================================== */
 function initContactForm() {
   const form = document.getElementById('contact-form');
   const emailInput = document.getElementById('contact-email');
-  const bookingModal = document.getElementById('booking-modal');
-  const closeBookingBtn = document.getElementById('close-booking-modal');
-  const userEmailSpan = document.getElementById('user-submitted-email');
+  const nameInput = document.getElementById('contact-name');
+  const subjectInput = document.getElementById('contact-subject');
+  const messageInput = document.getElementById('contact-message');
+  const submitBtn = document.getElementById('contact-submit-btn');
 
   if (!form || !emailInput) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = emailInput.value.trim();
+    const name = nameInput ? nameInput.value.trim() : 'Website Visitor';
+    const subject = subjectInput && subjectInput.value.trim() ? subjectInput.value.trim() : 'Project Inquiry';
+    const message = messageInput ? messageInput.value.trim() : '';
 
     if (!email || !isValidEmail(email)) {
       showToast('Please enter a valid email address.', 'error');
       return;
     }
 
-    // Show Toast
-    showToast('Sending invitation details...', 'info');
+    if (!message) {
+      showToast('Please enter your message or project details.', 'error');
+      return;
+    }
 
-    // Open Success Modal
-    setTimeout(() => {
-      if (userEmailSpan) userEmailSpan.textContent = email;
-      if (bookingModal) {
-        bookingModal.classList.add('modal-open');
-        document.body.style.overflow = 'hidden';
+    // Set Loading State on Button
+    const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <span class="inline-block animate-spin material-symbols-outlined text-[18px]">progress_activity</span>
+        <span>Sending...</span>
+      `;
+    }
+
+    showToast('Sending message to Rafif...', 'info');
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/ar.abhimanyu2915@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          subject: subject,
+          message: message,
+          _subject: `New Project Inquiry from ${name}: ${subject}`,
+          _template: 'table'
+        })
+      });
+
+      const result = await response.json();
+
+      if (response.ok || result.success === 'true' || result.success === true) {
+        showToast('Message sent directly to Rafif (ar.abhimanyu2915@gmail.com)!', 'check_circle');
+        form.reset();
+      } else {
+        // Fallback Form Submission
+        form.submit();
       }
-      form.reset();
-      showToast('Booking request sent successfully!', 'check_circle');
-    }, 400);
+    } catch (err) {
+      console.warn('AJAX submit failed, using fallback', err);
+      // Fallback submit
+      form.submit();
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+      }
+    }
   });
-
-  if (closeBookingBtn && bookingModal) {
-    closeBookingBtn.addEventListener('click', () => {
-      bookingModal.classList.remove('modal-open');
-      document.body.style.overflow = '';
-    });
-
-    bookingModal.addEventListener('click', (e) => {
-      if (e.target === bookingModal) {
-        bookingModal.classList.remove('modal-open');
-        document.body.style.overflow = '';
-      }
-    });
-  }
 }
 
 function isValidEmail(email) {

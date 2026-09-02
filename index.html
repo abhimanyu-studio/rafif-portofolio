@@ -927,25 +927,94 @@
         Have An Awesome Project<br/>Idea? <span class="text-primary">Let's Discuss</span>
       </h2>
 
-      <!-- Interactive Call Booking & Email Form -->
-      <form id="contact-form" class="flex flex-col sm:flex-row items-center p-1.5 border border-outline rounded-full max-w-lg mx-auto mb-8 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 focus-within:border-primary/60 focus-within:ring-2 focus-within:ring-primary/20">
-        <div class="flex items-center pl-4 text-gray-400 w-full sm:w-auto">
-          <span class="material-symbols-outlined text-[20px]">mail</span>
+      <!-- Interactive Discussion & Contact Form (Wider & Taller with Direct Email Delivery) -->
+      <form id="contact-form" action="https://formsubmit.co/ar.abhimanyu2915@gmail.com" method="POST" class="bg-surface-container/70 border border-outline hover:border-primary/40 rounded-3xl p-6 sm:p-8 max-w-2xl mx-auto mb-8 shadow-sm hover:shadow-md transition-all duration-300 text-left">
+        <!-- Hidden Config for FormSubmit -->
+        <input type="hidden" name="_subject" value="New Project Inquiry / Discussion from Portfolio!">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_autoresponse" value="Thank you for reaching out to Muhammad Rafif Pratama! I have received your message and will get back to you shortly.">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <!-- Name Input -->
+          <div>
+            <label for="contact-name" class="block text-xs font-bold text-on-surface uppercase tracking-wider mb-1.5">Your Name</label>
+            <div class="flex items-center bg-white border border-outline rounded-2xl px-4 py-3 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+              <span class="material-symbols-outlined text-[18px] text-gray-400 mr-2.5">person</span>
+              <input 
+                id="contact-name"
+                name="name"
+                required 
+                class="border-none focus:ring-0 w-full p-0 text-xs sm:text-sm bg-transparent text-on-surface placeholder:text-gray-400 font-body" 
+                placeholder="e.g. Alex Johnson" 
+                type="text"
+              />
+            </div>
+          </div>
+
+          <!-- Email Input -->
+          <div>
+            <label for="contact-email" class="block text-xs font-bold text-on-surface uppercase tracking-wider mb-1.5">Your Email Address</label>
+            <div class="flex items-center bg-white border border-outline rounded-2xl px-4 py-3 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+              <span class="material-symbols-outlined text-[18px] text-gray-400 mr-2.5">mail</span>
+              <input 
+                id="contact-email"
+                name="email"
+                required 
+                class="border-none focus:ring-0 w-full p-0 text-xs sm:text-sm bg-transparent text-on-surface placeholder:text-gray-400 font-body" 
+                placeholder="e.g. alex@company.com" 
+                type="email"
+              />
+            </div>
+          </div>
         </div>
-        <input 
-          id="contact-email"
-          required 
-          class="border-none focus:ring-0 w-full px-3 py-2 text-sm bg-transparent text-on-surface placeholder:text-gray-400" 
-          placeholder="Enter your email address" 
-          type="email"
-        />
-        <button 
-          type="submit" 
-          class="bg-primary text-white px-6 py-3 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold hover:bg-primary-hover hover:scale-105 hover:shadow-[0_0_20px_rgba(240,78,35,0.4)] transition-all duration-200 w-full sm:w-auto mt-2 sm:mt-0 shrink-0 flex items-center justify-center gap-1.5"
-        >
-          <span>Book Call</span>
-          <span class="material-symbols-outlined text-[16px]">calendar_month</span>
-        </button>
+
+        <!-- Subject / Topic Input -->
+        <div class="mb-4">
+          <label for="contact-subject" class="block text-xs font-bold text-on-surface uppercase tracking-wider mb-1.5">Discussion Topic / Project Type</label>
+          <div class="flex items-center bg-white border border-outline rounded-2xl px-4 py-3 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+            <span class="material-symbols-outlined text-[18px] text-gray-400 mr-2.5">lightbulb</span>
+            <input 
+              id="contact-subject"
+              name="subject"
+              class="border-none focus:ring-0 w-full p-0 text-xs sm:text-sm bg-transparent text-on-surface placeholder:text-gray-400 font-body" 
+              placeholder="e.g. Startup Web App, UI/UX Design, Business Incubation, Consultation" 
+              type="text"
+            />
+          </div>
+        </div>
+
+        <!-- Message / Discussion Textarea (Wide & Tall) -->
+        <div class="mb-6">
+          <label for="contact-message" class="block text-xs font-bold text-on-surface uppercase tracking-wider mb-1.5">Your Message or Discussion Details</label>
+          <div class="bg-white border border-outline rounded-2xl p-4 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+            <textarea 
+              id="contact-message"
+              name="message"
+              required 
+              rows="4"
+              class="border-none focus:ring-0 w-full p-0 text-xs sm:text-sm bg-transparent text-on-surface placeholder:text-gray-400 font-body resize-y leading-relaxed" 
+              placeholder="Tell me about your project, idea, timeline, or whatever you'd like to discuss together..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Submit Button & Direct Email Info -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-outline/50">
+          <div class="flex items-center gap-2 text-xs text-surface-variant font-medium">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            <span>Directly delivers to <strong class="text-on-surface">ar.abhimanyu2915@gmail.com</strong></span>
+          </div>
+
+          <button 
+            id="contact-submit-btn"
+            type="submit" 
+            class="bg-primary text-white px-8 py-3.5 rounded-full text-xs sm:text-sm font-extrabold hover:bg-primary-hover hover:scale-105 hover:shadow-[0_0_25px_rgba(240,78,35,0.45)] transition-all duration-200 w-full sm:w-auto shrink-0 flex items-center justify-center gap-2 shadow-md cursor-pointer"
+          >
+            <span>Send Message</span>
+            <span class="material-symbols-outlined text-[18px]">send</span>
+          </button>
+        </div>
       </form>
 
       <!-- Key Stats Badges -->
