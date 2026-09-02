@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initCopyEmail();
   initNavScrollSpy();
+  initCursorTrail();
 });
 
 /* ===================================================
@@ -641,4 +642,136 @@ function initNavScrollSpy() {
       }
     });
   }, { passive: true });
+}
+
+/* ===================================================
+   10. Fading Cursor Trail on Empty Space
+   =================================================== */
+function initCursorTrail() {
+  // Only enable on desktop/pointer devices (disable on touch screens)
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.id = 'cursor-trail-canvas';
+  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999;';
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  let width = 0;
+  let height = 0;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(dpr, dpr);
+  }
+
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+
+  const trail = [];
+  let lastPos = null;
+  const MAX_AGE = 380;   // Lifespan in ms for smooth decay
+  const STEP_DIST = 4;   // Distance in px between interpolated dots
+  const BASE_RADIUS = 7; // Base dot radius in px
+
+  function isOverEmptySpace(target) {
+    if (!target) return true;
+
+    // Interactive elements
+    if (target.closest('a, button, input, textarea, select, label, form, .service-card, .project-card, [role="button"], #mobile-drawer, #service-modal, #project-modal, #booking-modal, .cursor-pointer, .nav-item')) {
+      return false;
+    }
+
+    // Text and content elements
+    if (target.closest('h1, h2, h3, h4, h5, h6, p, li, blockquote, .badge, [data-service], [data-project], strong, em')) {
+      return false;
+    }
+
+    // Media and icons
+    if (target.closest('img, svg, video, canvas:not(#cursor-trail-canvas), iframe, .material-symbols-outlined, figure')) {
+      return false;
+    }
+
+    return true;
+  }
+
+  window.addEventListener('mousemove', (e) => {
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+    const now = performance.now();
+
+    // Only spawn trail if hovering on empty space
+    if (!isOverEmptySpace(e.target)) {
+      lastPos = null;
+      return;
+    }
+
+    if (lastPos) {
+      const dx = mouseX - lastPos.x;
+      const dy = mouseY - lastPos.y;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist > STEP_DIST) {
+        const steps = Math.floor(dist / STEP_DIST);
+        for (let i = 1; i <= steps; i++) {
+          const t = i / steps;
+          trail.push({
+            x: lastPos.x + dx * t,
+            y: lastPos.y + dy * t,
+            birth: now,
+            radius: BASE_RADIUS,
+            alpha: 0.85
+          });
+        }
+      }
+    } else {
+      trail.push({
+        x: mouseX,
+        y: mouseY,
+        birth: now,
+        radius: BASE_RADIUS,
+        alpha: 0.85
+      });
+    }
+
+    lastPos = { x: mouseX, y: mouseY };
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    lastPos = null;
+  });
+
+  function render(now) {
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = trail.length - 1; i >= 0; i--) {
+      const point = trail[i];
+      const age = now - point.birth;
+
+      if (age >= MAX_AGE) {
+        trail.splice(i, 1);
+        continue;
+      }
+
+      const progress = age / MAX_AGE; // 0 (birth) to 1 (death)
+      const currentAlpha = point.alpha * Math.pow(1 - progress, 1.2);
+      const currentRadius = Math.max(0.8, point.radius * (1 - progress * 0.65));
+
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, currentRadius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(240, 78, 35, ${currentAlpha.toFixed(3)})`;
+      ctx.fill();
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
 }
