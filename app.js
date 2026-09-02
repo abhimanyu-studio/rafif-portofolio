@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPortfolioFilter();
   initProjectModals();
   initServiceModals();
+  initActivitiesSlider();
   initTestimonialsSlider();
   initContactForm();
   initCopyEmail();
@@ -791,4 +792,126 @@ function initCursorTrail() {
   }
 
   requestAnimationFrame(render);
+}
+
+/* ===================================================
+   11. Activities & Highlights Slider (3 Visible Cards)
+   =================================================== */
+function initActivitiesSlider() {
+  const track = document.getElementById('activities-track');
+  const prevBtn = document.getElementById('activity-prev');
+  const nextBtn = document.getElementById('activity-next');
+  const dotsContainer = document.getElementById('activity-dots');
+
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const cards = track.querySelectorAll('.activity-card');
+  if (!cards.length) return;
+
+  let currentIndex = 0;
+
+  function getVisibleCount() {
+    if (window.innerWidth >= 1024) return 3;
+    if (window.innerWidth >= 640) return 2;
+    return 1;
+  }
+
+  function getMaxIndex() {
+    return Math.max(0, cards.length - getVisibleCount());
+  }
+
+  function renderDots() {
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = '';
+    const maxIdx = getMaxIndex();
+    for (let i = 0; i <= maxIdx; i++) {
+      const dot = document.createElement('button');
+      dot.className = `h-2.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-primary w-7' : 'bg-outline w-2.5 hover:bg-surface-variant'}`;
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      dot.addEventListener('click', () => {
+        currentIndex = i;
+        updateSlider();
+      });
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function updateSlider() {
+    const maxIdx = getMaxIndex();
+    if (currentIndex > maxIdx) currentIndex = maxIdx;
+    if (currentIndex < 0) currentIndex = 0;
+
+    const card = cards[0];
+    if (card) {
+      const cardRect = card.getBoundingClientRect();
+      const gap = 20; // 20px gap
+      const offset = currentIndex * (cardRect.width + gap);
+      track.style.transform = `translateX(-${offset}px)`;
+    }
+
+    // Update buttons
+    prevBtn.disabled = currentIndex === 0;
+    prevBtn.classList.toggle('opacity-40', currentIndex === 0);
+    prevBtn.classList.toggle('cursor-not-allowed', currentIndex === 0);
+
+    nextBtn.disabled = currentIndex >= maxIdx;
+    nextBtn.classList.toggle('opacity-40', currentIndex >= maxIdx);
+    nextBtn.classList.toggle('cursor-not-allowed', currentIndex >= maxIdx);
+
+    // Update dots
+    if (dotsContainer) {
+      const dots = dotsContainer.children;
+      for (let i = 0; i < dots.length; i++) {
+        if (i === currentIndex) {
+          dots[i].className = 'w-7 h-2.5 rounded-full bg-primary transition-all duration-300';
+        } else {
+          dots[i].className = 'w-2.5 h-2.5 rounded-full bg-outline hover:bg-surface-variant transition-all duration-300';
+        }
+      }
+    }
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSlider();
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (currentIndex < getMaxIndex()) {
+      currentIndex++;
+      updateSlider();
+    }
+  });
+
+  // Touch Swipe Support
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0 && currentIndex < getMaxIndex()) {
+        currentIndex++;
+        updateSlider();
+      } else if (diff < 0 && currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      }
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    renderDots();
+    updateSlider();
+  }, { passive: true });
+
+  renderDots();
+  updateSlider();
 }
