@@ -648,28 +648,30 @@ function initNavScrollSpy() {
    10. Fading Cursor Trail on Empty Space
    =================================================== */
 function initCursorTrail() {
-  // Only enable on desktop/pointer devices (disable on touch screens)
-  if (window.matchMedia('(pointer: coarse)').matches) return;
-
-  const canvas = document.createElement('canvas');
-  canvas.id = 'cursor-trail-canvas';
-  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999;';
-  document.body.appendChild(canvas);
+  // Prevent duplicate canvases
+  let canvas = document.getElementById('cursor-trail-canvas');
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.id = 'cursor-trail-canvas';
+    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:999999;';
+    document.body.appendChild(canvas);
+  }
 
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  let width = 0;
-  let height = 0;
+  let width = window.innerWidth;
+  let height = window.innerHeight;
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
   function resize() {
     width = window.innerWidth;
     height = window.innerHeight;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(dpr, dpr);
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
   window.addEventListener('resize', resize, { passive: true });
@@ -677,25 +679,20 @@ function initCursorTrail() {
 
   const trail = [];
   let lastPos = null;
-  const MAX_AGE = 380;   // Lifespan in ms for smooth decay
-  const STEP_DIST = 4;   // Distance in px between interpolated dots
-  const BASE_RADIUS = 7; // Base dot radius in px
+  const MAX_AGE = 450;    // Lifespan in ms for smooth decay
+  const STEP_DIST = 6;    // Distance in px between interpolated dots
+  const BASE_RADIUS = 10; // Prominent, clear dot radius (matches reference)
 
   function isOverEmptySpace(target) {
     if (!target) return true;
 
-    // Interactive elements
-    if (target.closest('a, button, input, textarea, select, label, form, .service-card, .project-card, [role="button"], #mobile-drawer, #service-modal, #project-modal, #booking-modal, .cursor-pointer, .nav-item')) {
+    // 1. Any interactive clickable/form element or cards
+    if (target.closest('a, button, input, textarea, select, label, form, .service-card, .project-card, [role="button"], #mobile-drawer, #service-modal, #project-modal, #booking-modal, .cursor-pointer')) {
       return false;
     }
 
-    // Text and content elements
-    if (target.closest('h1, h2, h3, h4, h5, h6, p, li, blockquote, .badge, [data-service], [data-project], strong, em')) {
-      return false;
-    }
-
-    // Media and icons
-    if (target.closest('img, svg, video, canvas:not(#cursor-trail-canvas), iframe, .material-symbols-outlined, figure')) {
+    // 2. Direct text / headings / paragraphs / lists / icons / images
+    if (target.closest('h1, h2, h3, h4, h5, h6, p, li, blockquote, img, svg, video, iframe, .material-symbols-outlined, figure')) {
       return false;
     }
 
@@ -707,7 +704,7 @@ function initCursorTrail() {
     const mouseY = e.clientY;
     const now = performance.now();
 
-    // Only spawn trail if hovering on empty space
+    // Only spawn trail if hovering on empty background space
     if (!isOverEmptySpace(e.target)) {
       lastPos = null;
       return;
@@ -727,7 +724,7 @@ function initCursorTrail() {
             y: lastPos.y + dy * t,
             birth: now,
             radius: BASE_RADIUS,
-            alpha: 0.85
+            alpha: 0.9
           });
         }
       }
@@ -737,7 +734,7 @@ function initCursorTrail() {
         y: mouseY,
         birth: now,
         radius: BASE_RADIUS,
-        alpha: 0.85
+        alpha: 0.9
       });
     }
 
@@ -761,12 +758,12 @@ function initCursorTrail() {
       }
 
       const progress = age / MAX_AGE; // 0 (birth) to 1 (death)
-      const currentAlpha = point.alpha * Math.pow(1 - progress, 1.2);
-      const currentRadius = Math.max(0.8, point.radius * (1 - progress * 0.65));
+      const currentAlpha = point.alpha * (1 - Math.pow(progress, 0.8));
+      const currentRadius = Math.max(1, point.radius * (1 - progress * 0.6));
 
       ctx.beginPath();
       ctx.arc(point.x, point.y, currentRadius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(240, 78, 35, ${currentAlpha.toFixed(3)})`;
+      ctx.fillStyle = `rgba(240, 78, 35, ${Math.max(0, currentAlpha).toFixed(3)})`;
       ctx.fill();
     }
 
