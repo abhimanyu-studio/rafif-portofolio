@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio Admin Dashboard — Muhammad Rafif Pratama</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f04e23",
+            "primary-hover": "#d63c10",
+            dark: "#121212",
+            card: "#1a1a1a",
+            "card-hover": "#222222",
+            outline: "rgba(255, 255, 255, 0.08)"
+          },
+          fontFamily: {
+            headline: ["Manrope", "sans-serif"],
+            body: ["Work Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #e5e5e5;
+      font-family: 'Work Sans', sans-serif;
+    }
+    h1, h2, h3, h4, .font-headline {
+      font-family: 'Manrope', sans-serif;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #141414;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #f04e23;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white">
+
+  <!-- ================= LOGIN VIEW ================= -->
+  <div id="login-view" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a0a]/90 backdrop-blur-xl p-4">
+    <div class="w-full max-w-md bg-[#161616] border border-white/10 rounded-3xl p-8 sm:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.8)] relative overflow-hidden">
+      <!-- Glow Accent -->
+      <div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10 text-center">
+        <div class="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/30 text-primary mx-auto flex items-center justify-center mb-5 shadow-inner">
+          <span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
+        </div>
+        <h1 class="text-2xl font-extrabold text-white mb-2 font-headline">Portfolio Admin</h1>
+        <p class="text-xs text-gray-400 mb-8 font-body">Masuk untuk mengelola dan update isi website <span class="text-primary font-semibold">rafifpratama.my.id</span></p>
+
+        <form id="login-form" class="space-y-5 text-left">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Password Dashboard</label>
+            <div class="relative">
+              <input 
+                type="password" 
+                id="admin-password" 
+                placeholder="Masukkan password admin..." 
+                required
+                class="w-full bg-[#202020] border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-primary transition-colors pr-10 font-mono"
+              />
+              <button type="button" id="toggle-pw" class="absolute right-3 top-3.5 text-gray-400 hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[20px]">visibility</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs text-gray-400">
+            <label class="flex items-center gap-2 cursor-pointer select-none">
+              <input type="checkbox" id="remember-me" class="rounded bg-[#202020] border-white/10 text-primary focus:ring-0 w-4 h-4" checked />
+              <span>Ingat saya di perangkat ini</span>
+            </label>
+          </div>
+
+          <div id="login-error" class="hidden text-xs text-red-400 bg-red-950/40 border border-red-500/30 rounded-xl p-3 flex items-center gap-2">
+            <span class="material-symbols-outlined text-[16px] shrink-0">error</span>
+            <span id="login-error-msg">Password salah! Silakan coba lagi.</span>
+          </div>
+
+          <button 
+            type="submit" 
+            id="btn-login"
+            class="w-full bg-primary hover:bg-primary-hover text-white font-bold py-3.5 px-6 rounded-xl transition-all shadow-lg hover:shadow-primary/30 flex items-center justify-center gap-2 font-headline"
+          >
+            <span>Buka Dashboard</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-white/5 flex items-center justify-center gap-4 text-xs text-gray-500">
+          <a href="/" target="_blank" class="hover:text-primary transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+            <span>Lihat Website</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DASHBOARD VIEW ================= -->
+  <div id="dashboard-view" class="hidden flex-1 flex flex-col">
+    
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-[#121212]/90 backdrop-blur-md border-b border-white/10 px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white font-extrabold font-headline shadow-md">
+          R
+        </div>
+        <div>
+          <h2 class="font-extrabold text-sm sm:text-base text-white leading-tight font-headline flex items-center gap-2">
+            <span>Admin Control Panel</span>
+            <span class="bg-primary/20 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full border border-primary/30">Live Sync</span>
+          </h2>
+          <p class="text-[11px] text-gray-400">rafifpratama.my.id</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a href="/" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 transition-colors">
+          <span class="material-symbols-outlined text-[16px]">visibility</span>
+          <span>Pratinjau Web</span>
+        </a>
+
+        <button 
+          id="btn-publish-all"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-primary hover:bg-primary-hover text-white shadow-lg shadow-primary/20 transition-all active:scale-95 font-headline"
+        >
+          <span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+          <span>Publish ke Website</span>
+        </button>
+
+        <button id="btn-logout" title="Logout" class="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-[20px]">logout</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 md:p-8 flex flex-col md:flex-row gap-6 sm:gap-8">
+      
+      <!-- Sidebar / Tab Navigation -->
+      <aside class="w-full md:w-64 shrink-0 space-y-1">
+        <div class="bg-[#161616] border border-white/10 rounded-2xl p-2 space-y-1 sticky md:top-24">
+          <button class="nav-tab active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all text-white bg-primary shadow-sm" data-tab="tab-overview">
+            <span class="material-symbols-outlined text-[20px]">dashboard</span>
+            <span>Ringkasan &amp; Profil</span>
+          </button>
+          
+          <button class="nav-tab w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all text-gray-400 hover:text-white hover:bg-white/5" data-tab="tab-projects">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px]">layers</span>
+              <span>Proyek (Projects)</span>
+            </div>
+            <span id="badge-count-projects" class="text-[11px] bg-white/10 px-2 py-0.5 rounded-full font-mono text-gray-300">0</span>
+          </button>
+
+          <button class="nav-tab w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all text-gray-400 hover:text-white hover:bg-white/5" data-tab="tab-activities">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px]">photo_library</span>
+              <span>Galeri Kegiatan</span>
+            </div>
+            <span id="badge-count-activities" class="text-[11px] bg-white/10 px-2 py-0.5 rounded-full font-mono text-gray-300">0</span>
+          </button>
+
+          <button class="nav-tab w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all text-gray-400 hover:text-white hover:bg-white/5" data-tab="tab-experience">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px]">work</span>
+              <span>Pengalaman Kerja</span>
+            </div>
+            <span id="badge-count-exp" class="text-[11px] bg-white/10 px-2 py-0.5 rounded-full font-mono text-gray-300">0</span>
+          </button>
+        </div>
+
+        <!-- Quick Help Note -->
+        <div class="hidden md:block bg-[#161616]/60 border border-white/5 rounded-2xl p-4 text-[11px] text-gray-400 space-y-2 mt-4">
+          <p class="font-bold text-gray-300 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[15px] text-primary">info</span>
+            <span>Tips Penggunaan</span>
+          </p>
+          <p>Setelah melakukan penambahan atau edit data, tekan tombol <strong class="text-white">Publish ke Website</strong> di pojok kanan atas agar perubahan aktif secara live.</p>
+        </div>
+      </aside>
+
+      <!-- Content Area -->
+      <main class="flex-1 min-w-0">
+        
+        <!-- ================= TAB 1: OVERVIEW & PROFILE ================= -->
+        <section id="tab-overview" class="tab-content space-y-6">
+          <div class="bg-[#161616] border border-white/10 rounded-3xl p-6 sm:p-8">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+              <div>
+                <h3 class="text-lg font-bold text-white font-headline">Informasi Profil &amp; Bio</h3>
+                <p class="text-xs text-gray-400 font-body">Data utama yang ditampilkan di Hero Header website</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Nama Lengkap</label>
+                <input type="text" id="prof-name" class="w-full bg-[#202020] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-primary transition-colors" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Headline / Tagline</label>
+                <input type="text" id="prof-headline" class="w-full bg-[#202020] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-primary transition-colors" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Lokasi</label>
+                <input type="text" id="prof-location" class="w-full bg-[#202020] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-primary transition-colors" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Email Kontak</label>
+                <input type="email" id="prof-email" class="w-full bg-[#202020] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-primary transition-colors" />
+              </div>
+
+              <div class="sm:col-span-2">
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Bio Singkat</label>
+                <textarea id="prof-bio" rows="3" class="w-full bg-[#202020] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-primary transition-colors"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Settings -->
+          <div class="bg-[#161616] border border-white/10 rounded-3xl p-6 sm:p-8">
+            <h3 class="text-lg font-bold text-white mb-2 font-headline">Statistik Kunci</h3>
+            <p class="text-xs text-gray-400 mb-6 font-body">Angka pencapaian yang tertera di kartu profil depan</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-2">Total Proyek</label>
+                <input type="text" id="stat-projects" placeholder="15+" class="w-full bg-[#202020] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-primary" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-2">Penghargaan / Awards</label>
+                <input type="text" id="stat-awards" placeholder="5+" class="w-full bg-[#202020] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-primary" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-2">Pengalaman (Tahun)</label>
+                <input type="text" id="stat-exp" placeholder="3+ Yrs" class="w-full bg-[#202020] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-primary" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB 2: PROJECTS ================= -->
+        <section id="tab-projects" class="tab-content hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-extrabold text-white font-headline">Kelola Proyek Portofolio</h3>
+              <p class="text-xs text-gray-400">Tambah proyek baru, edit tautan demo live, atau perbarui deskripsi.</p>
+            </div>
+            <button 
+              id="btn-add-project"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-primary hover:bg-primary-hover text-white transition-all shadow-md active:scale-95 self-start sm:self-auto font-headline"
+            >
+              <span class="material-symbols-outlined text-[18px]">add</span>
+              <span>Tambah Proyek Baru</span>
+            </button>
+          </div>
+
+          <!-- Project Cards Container -->
+          <div id="projects-list" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </section>
+
+        <!-- ================= TAB 3: ACTIVITIES ================= -->
+        <section id="tab-activities" class="tab-content hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-extrabold text-white font-headline">Slider Galeri Kegiatan (Activities)</h3>
+              <p class="text-xs text-gray-400">Kelola 10 foto kegiatan, penghargaan, konferensi, dan pembicara.</p>
+            </div>
+            <button 
+              id="btn-add-activity"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-primary hover:bg-primary-hover text-white transition-all shadow-md active:scale-95 self-start sm:self-auto font-headline"
+            >
+              <span class="material-symbols-outlined text-[18px]">add_photo_alternate</span>
+              <span>Tambah Foto Kegiatan</span>
+            </button>
+          </div>
+
+          <div id="activities-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </section>
+
+        <!-- ================= TAB 4: EXPERIENCE ================= -->
+        <section id="tab-experience" class="tab-content hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-extrabold text-white font-headline">Riwayat Pengalaman &amp; Organisasi</h3>
+              <p class="text-xs text-gray-400">Perbarui peran magang, kepemimpinan organisasi, atau kepanitiaan.</p>
+            </div>
+            <button 
+              id="btn-add-exp"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-primary hover:bg-primary-hover text-white transition-all shadow-md active:scale-95 self-start sm:self-auto font-headline"
+            >
+              <span class="material-symbols-outlined text-[18px]">add</span>
+              <span>Tambah Pengalaman</span>
+            </button>
+          </div>
+
+          <div id="experiences-list" class="space-y-4">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: EDIT / ADD PROJECT ================= -->
+  <div id="modal-project" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="w-full max-w-xl bg-[#181818] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl relative my-8">
+      <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+        <h3 id="modal-project-title" class="text-lg font-bold text-white font-headline">Tambah Proyek Baru</h3>
+        <button type="button" class="btn-close-modal text-gray-400 hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <form id="form-project" class="space-y-4">
+        <input type="hidden" id="proj-id" />
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Judul Proyek</label>
+          <input type="text" id="proj-title" required placeholder="Contoh: ARTRADE" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1.5">Kategori Filter</label>
+            <select id="proj-category" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary">
+              <option value="startup">Startup &amp; AI</option>
+              <option value="landing">Landing Page</option>
+              <option value="platform">Platform</option>
+              <option value="startup platform">Startup &amp; Platform</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1.5">Badge / Label Tag</label>
+            <input type="text" id="proj-badge" placeholder="Contoh: AI FinTech SaaS" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Tautan Website / Live App (URL)</label>
+          <input type="url" id="proj-live-url" placeholder="https://..." class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Foto Banner / Showcase</label>
+          <div class="flex items-center gap-3">
+            <input type="text" id="proj-image" placeholder="assets/artrade_showcase.png" class="flex-1 bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" />
+            <label class="cursor-pointer bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-3 py-2.5 rounded-xl border border-white/10 inline-flex items-center gap-1.5 shrink-0 transition-colors">
+              <span class="material-symbols-outlined text-[16px]">upload_file</span>
+              <span>Pilih Foto</span>
+              <input type="file" id="proj-file-input" accept="image/*" class="hidden" />
+            </label>
+          </div>
+          <div id="proj-preview-wrap" class="mt-2 hidden">
+            <img id="proj-preview-img" src="" alt="Preview" class="h-24 w-auto rounded-lg object-cover border border-white/10" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Deskripsi Singkat Proyek</label>
+          <textarea id="proj-desc" rows="3" required placeholder="Jelaskan fitur utama dan nilai bisnis proyek ini..." class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+          <button type="button" class="btn-close-modal px-5 py-2.5 rounded-xl text-xs font-bold text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Batal</button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl text-xs font-bold bg-primary hover:bg-primary-hover text-white shadow-md font-headline transition-colors">Simpan Proyek</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: EDIT / ADD ACTIVITY ================= -->
+  <div id="modal-activity" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="w-full max-w-lg bg-[#181818] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl relative my-8">
+      <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+        <h3 id="modal-activity-title" class="text-lg font-bold text-white font-headline">Tambah Foto Kegiatan</h3>
+        <button type="button" class="btn-close-modal text-gray-400 hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <form id="form-activity" class="space-y-4">
+        <input type="hidden" id="act-id" />
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Judul Kegiatan</label>
+          <input type="text" id="act-title" required placeholder="Contoh: Best Team Final Project — AFL" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1.5">Badge / Label</label>
+            <input type="text" id="act-badge" placeholder="Contoh: Best Team Award" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1.5">Fokus Posisi Foto</label>
+            <select id="act-position" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary">
+              <option value="object-top">Atas (Wajah / Atas)</option>
+              <option value="object-center">Tengah (Center)</option>
+              <option value="object-[center_35%]">35% dari Atas</option>
+              <option value="object-[center_20%]">20% dari Atas</option>
+              <option value="object-[center_5%]">5% dari Atas</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Foto Kegiatan</label>
+          <div class="flex items-center gap-3">
+            <input type="text" id="act-image" placeholder="assets/activity_afl_best_team.jpg" class="flex-1 bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" />
+            <label class="cursor-pointer bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-3 py-2.5 rounded-xl border border-white/10 inline-flex items-center gap-1.5 shrink-0 transition-colors">
+              <span class="material-symbols-outlined text-[16px]">upload_file</span>
+              <span>Pilih Foto</span>
+              <input type="file" id="act-file-input" accept="image/*" class="hidden" />
+            </label>
+          </div>
+          <div id="act-preview-wrap" class="mt-2 hidden">
+            <img id="act-preview-img" src="" alt="Preview" class="h-24 w-auto rounded-lg object-cover border border-white/10" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Deskripsi Singkat (Bahasa Inggris)</label>
+          <textarea id="act-desc" rows="2" required placeholder="Awarded Best Team presenting..." class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+          <button type="button" class="btn-close-modal px-5 py-2.5 rounded-xl text-xs font-bold text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Batal</button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl text-xs font-bold bg-primary hover:bg-primary-hover text-white shadow-md font-headline transition-colors">Simpan Kegiatan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: EDIT / ADD EXPERIENCE ================= -->
+  <div id="modal-exp" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="w-full max-w-xl bg-[#181818] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl relative my-8">
+      <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+        <h3 id="modal-exp-title" class="text-lg font-bold text-white font-headline">Tambah Riwayat Pengalaman</h3>
+        <button type="button" class="btn-close-modal text-gray-400 hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <form id="form-exp" class="space-y-4">
+        <input type="hidden" id="exp-id" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1.5">Perusahaan / Organisasi</label>
+            <input type="text" id="exp-company" required placeholder="Solo Technopark" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1.5">Jabatan / Role</label>
+            <input type="text" id="exp-role" required placeholder="Business Incubator Intern" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1.5">Lokasi</label>
+            <input type="text" id="exp-location" placeholder="Surakarta, Indonesia" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1.5">Periode / Tahun</label>
+            <input type="text" id="exp-period" placeholder="2026 — Present" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1.5">Badge Tipe</label>
+            <input type="text" id="exp-badge" placeholder="Internship / Leadership" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Poin Tanggung Jawab / Pencapaian (1 baris per poin)</label>
+          <textarea id="exp-bullets" rows="4" placeholder="• Deskripsi tugas atau pencapaian 1&#10;• Deskripsi tugas atau pencapaian 2" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary font-mono text-xs"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Tags Keahlian (Pisahkan dengan koma)</label>
+          <input type="text" id="exp-tags" placeholder="Business Incubation, BMC, Digital Marketing" class="w-full bg-[#222222] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary text-xs" />
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+          <button type="button" class="btn-close-modal px-5 py-2.5 rounded-xl text-xs font-bold text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Batal</button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl text-xs font-bold bg-primary hover:bg-primary-hover text-white shadow-md font-headline transition-colors">Simpan Pengalaman</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= PUBLISH PROGRESS MODAL ================= -->
+  <div id="modal-publish-progress" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-[#161616] border border-white/10 rounded-3xl p-6 sm:p-8 text-center shadow-2xl space-y-5">
+      <div id="publish-spinner" class="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin mx-auto"></div>
+      <div id="publish-success-icon" class="hidden w-16 h-16 bg-green-500/20 text-green-400 border border-green-500/30 rounded-2xl mx-auto flex items-center justify-center">
+        <span class="material-symbols-outlined text-3xl">check_circle</span>
+      </div>
+
+      <div>
+        <h4 id="publish-status-title" class="text-lg font-bold text-white font-headline">Memproses Publikasi...</h4>
+        <p id="publish-status-msg" class="text-xs text-gray-400 mt-1">Mengunggah perubahan ke GitHub repository</p>
+      </div>
+
+      <div class="w-full bg-[#222222] rounded-full h-2 overflow-hidden border border-white/5">
+        <div id="publish-bar" class="bg-primary h-full w-1/4 transition-all duration-300"></div>
+      </div>
+
+      <div id="publish-actions" class="hidden pt-2 flex items-center justify-center gap-3">
+        <button id="btn-close-publish" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-bold transition-colors">
+          Tutup
+        </button>
+        <a href="/" target="_blank" class="px-5 py-2.5 bg-primary hover:bg-primary-hover text-white rounded-xl text-xs font-bold transition-colors inline-flex items-center gap-1.5">
+          <span>Lihat Website</span>
+          <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic -->
+  <script src="admin.js"></script>
+</body>
+</html>

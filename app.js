@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCopyEmail();
   initNavScrollSpy();
   initCursorTrail();
+  initDynamicSync();
 });
 
 /* ===================================================
@@ -914,4 +915,77 @@ function initActivitiesSlider() {
 
   renderDots();
   updateSlider();
+}
+
+/* ===================================================
+   12. Dynamic Data Sync from data/portfolio.json
+   =================================================== */
+async function initDynamicSync() {
+  try {
+    const res = await fetch('data/portfolio.json?v=' + Date.now());
+    if (!res.ok) return;
+    const data = await res.json();
+
+    // 1. Sync Profile Stats
+    if (data.profile && data.profile.stats) {
+      const stats = data.profile.stats;
+      const statEls = document.querySelectorAll('.stat-number');
+      if (statEls.length >= 3) {
+        if (stats.projects) statEls[0].textContent = stats.projects;
+        if (stats.awards) statEls[1].textContent = stats.awards;
+        if (stats.experience) statEls[2].textContent = stats.experience;
+      }
+    }
+
+    // 2. Sync Activities Slider
+    if (data.activities && Array.isArray(data.activities) && data.activities.length) {
+      const track = document.getElementById('activities-track');
+      if (track) {
+        track.innerHTML = data.activities.map(act => `
+          <div class="activity-card w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 group">
+            <div class="relative rounded-[2rem] overflow-hidden bg-[#222222] border border-white/10 hover:border-primary/40 shadow-lg hover:shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300">
+              <div class="aspect-[4/3] w-full overflow-hidden bg-black/40 relative">
+                <img src="${act.image}" alt="${act.title}" class="w-full h-full object-cover ${act.objectPosition || 'object-center'} group-hover:scale-105 transition-transform duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent"></div>
+                <span class="absolute top-3.5 left-3.5 bg-primary text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md">
+                  ${act.badge || 'Activity'}
+                </span>
+                <div class="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 class="font-extrabold text-base sm:text-lg leading-snug drop-shadow-sm text-white">${act.title}</h3>
+                  <p class="text-xs text-gray-300 font-body line-clamp-1 mt-0.5">${act.description || ''}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+        initActivitiesSlider();
+      }
+    }
+
+    // 3. Sync Projects
+    if (data.projects && Array.isArray(data.projects) && data.projects.length) {
+      data.projects.forEach(p => {
+        if (!projectData[p.id]) {
+          projectData[p.id] = {
+            title: p.title,
+            tagline: p.badge || p.category,
+            category: p.category,
+            image: p.image,
+            liveUrl: p.liveUrl,
+            description: p.description,
+            tags: [p.badge, p.category, 'Portfolio Project']
+          };
+        } else {
+          projectData[p.id].title = p.title;
+          projectData[p.id].description = p.description;
+          if (p.image) projectData[p.id].image = p.image;
+          if (p.liveUrl) projectData[p.id].liveUrl = p.liveUrl;
+        }
+      });
+      initPortfolioFilter();
+      initProjectModals();
+    }
+  } catch (err) {
+    console.debug('Dynamic sync not applied:', err);
+  }
 }

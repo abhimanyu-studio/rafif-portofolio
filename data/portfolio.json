@@ -1,0 +1,228 @@
+{
+  "profile": {
+    "name": "Muhammad Rafif Pratama",
+    "headline": "Digital Business Student & Tech Innovator",
+    "location": "Surakarta, Indonesia",
+    "email": "ar.abhimanyu2915@gmail.com",
+    "bio": "Undergraduate student in Digital Business at Universitas Muhammadiyah Surakarta, specializing in Tech Product Strategy, UI/UX Design, and Web3 Ecosystems.",
+    "stats": {
+      "projects": "15+",
+      "awards": "5+",
+      "experience": "3+ Yrs"
+    }
+  },
+  "activities": [
+    {
+      "id": "act-1",
+      "title": "Best Team Final Project — AFL",
+      "badge": "Best Team Award",
+      "description": "Awarded Best Team presenting Arumé AI & IoT perfume at AIESEC Future Leaders",
+      "image": "assets/activity_afl_best_team.jpg",
+      "objectPosition": "object-top"
+    },
+    {
+      "id": "act-2",
+      "title": "International Conference — Youth.ID",
+      "badge": "International",
+      "description": "Keynote presenter on cross-border education & digital literacy programs",
+      "image": "assets/activity_youthid_conference.png",
+      "objectPosition": "object-center"
+    },
+    {
+      "id": "act-3",
+      "title": "Leadership & Organization Speaker",
+      "badge": "Leadership Speaker",
+      "description": "Delivering leadership training and governance workshop at LDK Assalaam",
+      "image": "assets/activity_leadership_speaker.jpg",
+      "objectPosition": "object-top"
+    },
+    {
+      "id": "act-4",
+      "title": "International Volunteer at SIKL",
+      "badge": "Volunteer Delegation",
+      "description": "Facilitating literacy modules for Indonesian diaspora students in Malaysia",
+      "image": "assets/activity_sikl_volunteer.jpg",
+      "objectPosition": "object-center"
+    },
+    {
+      "id": "act-5",
+      "title": "Bybit Web3 Community Event",
+      "badge": "Web3 Community",
+      "description": "Active collaborator in Bybit Soloraya Academy driving Web3 ecosystem growth",
+      "image": "assets/activity_bybit_web3.png",
+      "objectPosition": "object-center"
+    },
+    {
+      "id": "act-6",
+      "title": "Indextion Speaker — Digital Business",
+      "badge": "Guest Speaker",
+      "description": "Keynote speaker sharing insights on digital transformation and student innovation",
+      "image": "assets/activity_indextion_speaker.png",
+      "objectPosition": "object-top"
+    },
+    {
+      "id": "act-7",
+      "title": "Tokocrypto & Binance Web3 Summit",
+      "badge": "Web3 & Blockchain",
+      "description": "2nd Place awardee & collaborator at Tokocrypto & Binance Web3 University",
+      "image": "assets/activity_tokocrypto_binance.png",
+      "objectPosition": "object-top"
+    },
+    {
+      "id": "act-8",
+      "title": "Bronze Medal — AISEEF Fair",
+      "badge": "International Bronze Medal",
+      "description": "Won Bronze Medal as Team Leader presenting BIOSIL sustainable composite solution",
+      "image": "assets/activity_aiseef_bronze.png",
+      "objectPosition": "object-[center_35%]"
+    },
+    {
+      "id": "act-9",
+      "title": "Community Empowerment — Batik Djarum",
+      "badge": "Community Service",
+      "description": "Collaborative university community service empowering local tourism & MSMEs",
+      "image": "assets/activity_community_service.jpg",
+      "objectPosition": "object-[center_5%]"
+    },
+    {
+      "id": "act-10",
+      "title": "PRISMA Research & Training Summit",
+      "badge": "UKM Prisma UMS",
+      "description": "Vice Chairman orchestrating student tech research & organizational governance",
+      "image": "assets/activity_prisma_org.jpg",
+      "objectPosition": "object-center"
+    }
+  ],
+  "projects": [
+    {
+      "id": "artrade",
+      "title": "ARTRADE",
+      "badge": "AI FinTech SaaS",
+      "badgeColor": "green",
+      "category": "startup platform",
+      "description": "AI Trading Performance Analyzer — AI-powered platform that automatically extracts trade screenshots, computes PNL & win rate, and generates actionable visual performance insights.",
+      "image": "assets/artrade_showcase.png",
+      "liveUrl": "https://artrade-gamma.vercel.app/",
+      "liveBadgeText": "Live App",
+      "featured": true
+    },
+    {
+      "id": "arume",
+      "title": "Arumé Perfume",
+      "badge": "AI & IoT Modular Perfume",
+      "badgeColor": "primary",
+      "category": "startup",
+      "description": "Infinite Scents, One Vessel — IoT & AI-driven modular fragrance with ESP32 S3 smart bottle & scent layering engine.",
+      "image": "assets/arume_perfume_showcase.png",
+      "liveUrl": "https://arume-perfume.vercel.app",
+      "liveBadgeText": "Live App",
+      "featured": true
+    },
+    {
+      "id": "snapspace",
+      "title": "SnapSpace",
+      "badge": "Digital Photobooth SaaS",
+      "badgeColor": "blue",
+      "category": "platform startup",
+      "description": "Digital Photobooth Platform — End-to-end self-service photobooth ecosystem with interactive touchscreen UI, dynamic frame templates, & instant cloud QR delivery.",
+      "image": "assets/snapspace_showcase.png",
+      "liveUrl": "https://delightful-rabanadas-4235e2.netlify.app/",
+      "liveBadgeText": "Live App",
+      "featured": true
+    },
+    {
+      "id": "fore",
+      "title": "Fore Coffee",
+      "badge": "Landing Page & UI",
+      "badgeColor": "neutral",
+      "category": "landing",
+      "description": "Grind the Essentials — Modern grab-and-go digital coffee web experience with premium menu catalogs & sustainability highlights.",
+      "image": "assets/fore_coffee_showcase.png",
+      "liveUrl": "https://cerulean-cascaron-bf6d94.netlify.app/",
+      "liveBadgeText": "Live Site",
+      "featured": true
+    },
+    {
+      "id": "prisma",
+      "title": "Prisma Digital Hub",
+      "badge": "Organization Platform",
+      "badgeColor": "primary",
+      "category": "platform",
+      "description": "Strategic student organization portal for tracking research projects, publication pipelines, and member development.",
+      "image": "assets/prisma_showcase.png",
+      "liveUrl": "",
+      "liveBadgeText": "2026",
+      "featured": false
+    },
+    {
+      "id": "web3",
+      "title": "HackQuest Innovate ID",
+      "badge": "HackQuest Event",
+      "badgeColor": "primary",
+      "category": "startup",
+      "description": "Advocacy and community portal design for Web3 competitions and developer ecosystem in Indonesia.",
+      "image": "assets/web3_showcase.png",
+      "liveUrl": "",
+      "liveBadgeText": "2026",
+      "featured": false
+    }
+  ],
+  "experiences": [
+    {
+      "id": "exp-1",
+      "company": "Solo Technopark",
+      "location": "Surakarta, Indonesia",
+      "period": "July 2026 – September 2026",
+      "role": "Business & Technology Incubator Intern",
+      "badge": "Internship",
+      "bullets": [
+        "Business Incubation & Startup Growth: Actively contributed to the Technology Business Incubator (IBT) program, conducting commercial potential mapping, Business Model Canvas (BMC) validation, and strategic scale-up planning for incubated startup tenants.",
+        "Entrepreneurship Training & Digital Marketing: Facilitated digital marketing, e-commerce adoption, and brand storytelling workshops for MSMEs and incubator cohort entrepreneurs.",
+        "Content Strategy & Program Publication: Designed thematic social media content calendars and managed campaign performance tracking to elevate ecosystem engagement and program visibility.",
+        "Operations & Ecosystem Coordination: Coordinated day-to-day incubator operations, workshop facilitation, and structured documentation for technology incubation milestone reviews."
+      ],
+      "tags": ["Business Incubation (IBT)", "Business Model Canvas (BMC)", "Digital Marketing & Branding", "Content Strategy", "Workshop Operations"]
+    },
+    {
+      "id": "exp-2",
+      "company": "UKM Prisma",
+      "location": "Universitas Muhammadiyah Surakarta",
+      "period": "2026 — Present",
+      "role": "Vice Chairman",
+      "badge": "Leadership",
+      "bullets": [
+        "Assist the Chairman in managing organizational operations and strategic planning.",
+        "Coordinate communication and collaboration across organizational divisions.",
+        "Supervise the implementation of high-impact technology & research programs."
+      ],
+      "tags": ["Strategic Planning", "Team Coordination", "Program Supervision"]
+    },
+    {
+      "id": "exp-3",
+      "company": "HackQuest Indonesia",
+      "location": "Web 3 Innovation Ecosystem",
+      "period": "2026",
+      "role": "Advocate Team",
+      "badge": "Web 3 & Community",
+      "bullets": [
+        "Supported the rollout of Web 3 innovation hackathons and technology competition programs.",
+        "Assisted participant onboarding and coordinated operational events.",
+        "Spearheaded promotional campaigns across developer communities."
+      ],
+      "tags": ["Web 3 Hackathons", "Community Outreach", "Event Operations"]
+    },
+    {
+      "id": "exp-4",
+      "company": "Youth.ID ASEAN",
+      "location": "International Chapter",
+      "period": "2025",
+      "role": "International Volunteer",
+      "badge": "Cross-Border",
+      "bullets": [
+        "Designed and delivered engaging digital literacy and educational programs for Indonesian students in Kuala Lumpur, Malaysia.",
+        "Collaborated with international youth delegates in cultural exchange and leadership development."
+      ],
+      "tags": ["Digital Literacy", "Global Collaboration", "Volunteer Management"]
+    }
+  ]
+}
