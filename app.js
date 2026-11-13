@@ -101,13 +101,14 @@ function initMobileDrawer() {
    =================================================== */
 function initPortfolioFilter() {
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.portfolio-card');
-
-  if (!filterBtns.length || !cards.length) return;
+  if (!filterBtns.length) return;
 
   filterBtns.forEach(btn => {
+    if (btn.dataset.filterBound) return;
+    btn.dataset.filterBound = 'true';
     btn.addEventListener('click', () => {
       const filterValue = btn.getAttribute('data-filter');
+      const cards = document.querySelectorAll('.portfolio-card');
 
       // Update active button state
       filterBtns.forEach(b => b.classList.remove('active'));
@@ -258,12 +259,18 @@ function initProjectModals() {
     document.body.style.overflow = '';
   }
 
-  projectCards.forEach(card => {
-    card.addEventListener('click', (e) => {
-      const key = card.getAttribute('data-project');
-      openProjectModal(key);
+  const grid = document.getElementById('portfolio-grid');
+  if (grid && !grid.dataset.modalListener) {
+    grid.dataset.modalListener = 'true';
+    grid.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      const card = e.target.closest('.portfolio-card');
+      if (card) {
+        const key = card.getAttribute('data-project');
+        openProjectModal(key);
+      }
     });
-  });
+  }
 
   if (closeBtn) closeBtn.addEventListener('click', closeProjectModal);
   if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeProjectModal);
@@ -963,25 +970,92 @@ async function initDynamicSync() {
     }
 
     // 3. Sync Projects
-    if (data.projects && Array.isArray(data.projects) && data.projects.length) {
+    if (data.projects && Array.isArray(data.projects)) {
+      const grid = document.getElementById('portfolio-grid');
+      if (grid) {
+        grid.innerHTML = data.projects.map(proj => {
+          const isGreen = proj.badgeColor === 'green';
+          const isBlue = proj.badgeColor === 'blue';
+          let badgeClass = 'bg-black/70 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/20 shadow-sm group-hover:bg-primary group-hover:border-primary transition-colors duration-300';
+          let dotColor = 'bg-primary';
+          let liveBtnClass = 'w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:bg-primary-hover transition-all duration-300';
+          let liveTagClass = 'text-xs text-primary font-bold bg-primary/10 hover:bg-primary hover:text-white px-2.5 py-0.5 rounded-full transition-colors inline-flex items-center gap-1';
+
+          if (isGreen) {
+            badgeClass = 'bg-black/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-green-500/30 shadow-sm group-hover:bg-[#22c55e] group-hover:text-black transition-colors duration-300';
+            dotColor = 'bg-[#22c55e]';
+            liveBtnClass = 'w-10 h-10 bg-[#22c55e] text-black rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:bg-green-400 transition-all duration-300';
+            liveTagClass = 'text-xs text-[#15803d] bg-green-50 font-bold hover:bg-[#22c55e] hover:text-black px-2.5 py-0.5 rounded-full transition-colors inline-flex items-center gap-1 border border-green-200';
+          } else if (isBlue) {
+            badgeClass = 'bg-black/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-blue-500/30 shadow-sm group-hover:bg-[#3b82f6] group-hover:text-white transition-colors duration-300';
+            dotColor = 'bg-[#3b82f6]';
+            liveBtnClass = 'w-10 h-10 bg-[#3b82f6] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:bg-blue-600 transition-all duration-300';
+            liveTagClass = 'text-xs text-[#2563eb] bg-blue-50 font-bold hover:bg-[#3b82f6] hover:text-white px-2.5 py-0.5 rounded-full transition-colors inline-flex items-center gap-1 border border-blue-200';
+          }
+
+          return `
+            <div class="portfolio-card bg-surface rounded-3xl p-4 sm:p-5 shadow-sm border border-outline group hover:scale-[1.015] hover:shadow-xl hover:border-primary/40 transition-all duration-300 ease-out cursor-pointer" data-category="${proj.category || ''}" data-project="${proj.id}">
+              <div class="aspect-[16/10] bg-[#111] rounded-2xl overflow-hidden mb-4 relative flex items-center justify-center border border-outline/50">
+                <img 
+                  alt="${proj.title}" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  src="${proj.image}"
+                  loading="lazy"
+                  onerror="this.src='assets/artrade_showcase.png'"
+                />
+                <div class="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+                  <span class="${badgeClass}">
+                    ${proj.badge || proj.category}
+                  </span>
+                  <div class="flex items-center gap-2">
+                    ${proj.liveUrl ? `
+                      <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="Visit ${proj.title} Live Website" class="${liveBtnClass}" title="Visit Live App">
+                        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                      </a>
+                    ` : ''}
+                    <button aria-label="View ${proj.title} details" class="w-10 h-10 bg-inverse-surface text-white rounded-full flex items-center justify-center shadow-lg group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                      <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="px-2 pb-2">
+                <div class="flex items-center justify-between mb-1">
+                  <h3 class="font-extrabold text-lg sm:text-xl group-hover:text-primary transition-colors flex items-center gap-2">
+                    ${proj.title}
+                    <span class="w-2 h-2 rounded-full ${dotColor} group-hover:animate-ping"></span>
+                  </h3>
+                  ${proj.liveUrl ? `
+                    <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="${liveTagClass}">
+                      <span>${proj.liveBadgeText || 'Live App'}</span>
+                      <span class="material-symbols-outlined text-[12px]">arrow_outward</span>
+                    </a>
+                  ` : `
+                    <span class="text-xs text-surface-variant font-medium">${proj.liveBadgeText || '2026'}</span>
+                  `}
+                </div>
+                <p class="text-xs sm:text-sm text-surface-variant font-body leading-relaxed">
+                  ${proj.description || ''}
+                </p>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Sync projectData modal lookup
       data.projects.forEach(p => {
-        if (!projectData[p.id]) {
-          projectData[p.id] = {
-            title: p.title,
-            tagline: p.badge || p.category,
-            category: p.category,
-            image: p.image,
-            liveUrl: p.liveUrl,
-            description: p.description,
-            tags: [p.badge, p.category, 'Portfolio Project']
-          };
-        } else {
-          projectData[p.id].title = p.title;
-          projectData[p.id].description = p.description;
-          if (p.image) projectData[p.id].image = p.image;
-          if (p.liveUrl) projectData[p.id].liveUrl = p.liveUrl;
-        }
+        projectData[p.id] = {
+          title: p.title,
+          tagline: p.badge || p.category,
+          category: p.category,
+          image: p.image,
+          liveUrl: p.liveUrl,
+          description: p.description,
+          tags: [p.badge, p.category, 'Featured Case Study']
+        };
       });
+
       initPortfolioFilter();
       initProjectModals();
     }
