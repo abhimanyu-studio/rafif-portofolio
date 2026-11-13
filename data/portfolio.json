@@ -141,18 +141,6 @@
       "liveUrl": "https://cerulean-cascaron-bf6d94.netlify.app/",
       "liveBadgeText": "Live Site",
       "featured": true
-    },
-    {
-      "id": "web3",
-      "title": "HackQuest Innovate ID",
-      "badge": "HackQuest Event",
-      "badgeColor": "primary",
-      "category": "startup",
-      "description": "Advocacy and community portal design for Web3 competitions and developer ecosystem in Indonesia.",
-      "image": "assets/web3_showcase.png",
-      "liveUrl": "",
-      "liveBadgeText": "2026",
-      "featured": false
     }
   ],
   "experiences": [
