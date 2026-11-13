@@ -143,18 +143,6 @@
       "featured": true
     },
     {
-      "id": "prisma",
-      "title": "Prisma Digital Hub",
-      "badge": "Organization Platform",
-      "badgeColor": "primary",
-      "category": "platform",
-      "description": "Strategic student organization portal for tracking research projects, publication pipelines, and member development.",
-      "image": "assets/prisma_showcase.png",
-      "liveUrl": "",
-      "liveBadgeText": "2026",
-      "featured": false
-    },
-    {
       "id": "web3",
       "title": "HackQuest Innovate ID",
       "badge": "HackQuest Event",
@@ -181,7 +169,13 @@
         "Content Strategy & Program Publication: Designed thematic social media content calendars and managed campaign performance tracking to elevate ecosystem engagement and program visibility.",
         "Operations & Ecosystem Coordination: Coordinated day-to-day incubator operations, workshop facilitation, and structured documentation for technology incubation milestone reviews."
       ],
-      "tags": ["Business Incubation (IBT)", "Business Model Canvas (BMC)", "Digital Marketing & Branding", "Content Strategy", "Workshop Operations"]
+      "tags": [
+        "Business Incubation (IBT)",
+        "Business Model Canvas (BMC)",
+        "Digital Marketing & Branding",
+        "Content Strategy",
+        "Workshop Operations"
+      ]
     },
     {
       "id": "exp-2",
@@ -195,7 +189,11 @@
         "Coordinate communication and collaboration across organizational divisions.",
         "Supervise the implementation of high-impact technology & research programs."
       ],
-      "tags": ["Strategic Planning", "Team Coordination", "Program Supervision"]
+      "tags": [
+        "Strategic Planning",
+        "Team Coordination",
+        "Program Supervision"
+      ]
     },
     {
       "id": "exp-3",
@@ -209,7 +207,11 @@
         "Assisted participant onboarding and coordinated operational events.",
         "Spearheaded promotional campaigns across developer communities."
       ],
-      "tags": ["Web 3 Hackathons", "Community Outreach", "Event Operations"]
+      "tags": [
+        "Web 3 Hackathons",
+        "Community Outreach",
+        "Event Operations"
+      ]
     },
     {
       "id": "exp-4",
@@ -222,7 +224,11 @@
         "Designed and delivered engaging digital literacy and educational programs for Indonesian students in Kuala Lumpur, Malaysia.",
         "Collaborated with international youth delegates in cultural exchange and leadership development."
       ],
-      "tags": ["Digital Literacy", "Global Collaboration", "Volunteer Management"]
+      "tags": [
+        "Digital Literacy",
+        "Global Collaboration",
+        "Volunteer Management"
+      ]
     }
   ]
 }
